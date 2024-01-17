@@ -22,6 +22,7 @@ struct Snake {
 }
 // Interllizing Snake [Bloppy] 
 //
+
 void snakeSetup(struct Snake *snake, struct Food *food) {
 	snake->x = 100; 
 	snake->y = 100;
@@ -33,6 +34,7 @@ void snakeSetup(struct Snake *snake, struct Food *food) {
 }
 // Snake wall colition deticion 
 //
+
 int snakeHitwall(struct Snake *snake) {
      if (snake->x < 0 || snake->y < 0) {
              return 0; 
@@ -42,4 +44,22 @@ int snakeHitwall(struct Snake *snake) {
      }
      return 1; 
 }
+
+
+// Snaking updating using for loop to poke number into memeroy
+//
+void snakeUpdate(SDL_Render *renderer, struct Snake *snake) {
+     SDL_Rect new_t = {snake->tail.x, snake->tail.y, snake->WIDTH, snake->HEIGHT}; 
+     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
+     SDL_RenderFillRect(renderer, &new_t);
+     SDL_RenderDrawRect(renderer, &new_t);
+     for (int i = 0; i <= size - 1; i++) {
+         SDL_Rect new_t = {snake->tail[i].x, snake->tail[i].y, snake->WIDTH, snake->HEIGHT}; 
+         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
+         SDL_RenderFillRect(renderer, &new_t);
+         SDL_RenderDrawRect(renderer, &new_t);
+     } 
+} 
+
+
 #endif //SNAKE_SNAKE_H
