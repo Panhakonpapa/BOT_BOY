@@ -1,5 +1,6 @@
 //* Snaking Moudle for [bloppy] // 
-#include "food.h" 
+#ifndef SNAKE_SNAKE_H
+#define SNAKE_SNAKE_H
 //* Defining Macro // 
 //
 #define HEIGHT 20
@@ -41,3 +42,4 @@ int snakeHitwall(struct Snake *snake) {
      }
      return 1; 
 }
+#endif //SNAKE_SNAKE_H

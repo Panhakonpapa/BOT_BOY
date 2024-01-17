@@ -1,3 +1,5 @@
+#ifndef SNAKE_FOOD_H
+#define SNAKE_FOOD_H
 // Poking into memory of our snake
 //
 struct Food {
@@ -21,3 +23,9 @@ int RandomFootPos(struct Food *food) {
      food->x = random_witdht;
      food->y = random_height;
 }
+
+
+
+
+
+#endif //SNAKE_FOOD_H
