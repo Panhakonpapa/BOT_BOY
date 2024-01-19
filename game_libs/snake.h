@@ -1,3 +1,5 @@
+//   lIbary for rendering snake on the screen // libary for use in main only // 19/Jan/2024 //  
+//
 //* Snaking Moudle for [bloppy] // 
 #ifndef SNAKE_SNAKE_H
 #define SNAKE_SNAKE_H
@@ -5,6 +7,10 @@
 //
 #define HEIGHT 20
 #define WIDTH 20
+#define UP 1
+#define DOWN 2
+#define LEFT 3
+#define RIGHT 4
 //* Trail for link list 
 //
 struct Tail {
@@ -22,7 +28,6 @@ struct Snake {
 }
 // Interllizing Snake [Bloppy] 
 //
-
 void snakeSetup(struct Snake *snake, struct Food *food) {
 	snake->x = 100; 
 	snake->y = 100;
@@ -34,7 +39,6 @@ void snakeSetup(struct Snake *snake, struct Food *food) {
 }
 // Snake wall colition deticion 
 //
-
 int snakeHitwall(struct Snake *snake) {
      if (snake->x < 0 || snake->y < 0) {
              return 0; 
@@ -59,7 +63,24 @@ void snakeUpdate(SDL_Render *renderer, struct Snake *snake) {
          SDL_RenderFillRect(renderer, &new_t);
          SDL_RenderDrawRect(renderer, &new_t);
      } 
-} 
+}
+// Snake-Dead 
+//
+void snakeDeath(struct Snake * snake, struct Food *food){
+    if(!snakeHitwall((snake)){
+        free(snake->tail);
+        setup(snake, food);
+        printf("DEAD\n");
+    }
+    for(int i = 0; i <= snake->size -1 ; i++){
+        int dist = distance(snake->x, snake->y, snake->tail[i].x, snake->tail[i].y);
+        if(dist < 1){
+            free(snake->tail);
+            setup(snake, food);
+            printf("DEAD\n");
+        }
+    }
+}
 
-
+ 
 #endif //SNAKE_SNAKE_H

@@ -7,7 +7,7 @@ SDL_FLAGS = -lSDL2
 
 # Source and output files
 SRC = main.c  
-OUT = window 
+OUT = game 
 
 all: $(OUT)
 

@@ -1,3 +1,5 @@
+//           Libary for rendering food // 19/Jan/2024/ // no use case // for my game//   
+//
 #ifndef SNAKE_FOOD_H
 #define SNAKE_FOOD_H
 // Poking into memory of our snake
