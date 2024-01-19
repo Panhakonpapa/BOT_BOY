@@ -6,7 +6,7 @@
 #define HEIGHT 600
 #define WIDTH_SNAKE 50
 #define HEIGHT_SNAKE 50
-#define DELAY 400
+#define DELAY 120
 SDL_Window *window;
 SDL_Renderer *renderer; 
 typedef struct {
@@ -50,7 +50,7 @@ int main() {
 	           -1, // set flags to -1  
 		   SDL_RENDERER_ACCELERATED // using graphic to drawing window
 		   ); 
-     Snake snake = Createsnake(100, 100, 50, 50);  
+     Snake snake = Createsnake(100, 100, WIDTH_SNAKE, HEIGHT_SNAKE );  
      SDL_Event event; 
      while (true) {
         // Main event Hendling Here // 	
