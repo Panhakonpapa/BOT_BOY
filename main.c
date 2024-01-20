@@ -65,7 +65,7 @@ int main() {
     }
 
 
-    SDL_Surface* snakeSurface = SDL_LoadBMP("art/player.bmp");
+    SDL_Surface* snakeSurface = SDL_LoadBMP("art/blop.bmp");
     if (!snakeSurface) {
         // Handle snake loading error
         return -1;
