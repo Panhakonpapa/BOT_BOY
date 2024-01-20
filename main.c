@@ -65,7 +65,7 @@ int main() {
     }
 
 
-    SDL_Surface* snakeSurface = SDL_LoadBMP("path/to/your/snake.png");
+    SDL_Surface* snakeSurface = SDL_LoadBMP("art/player.bmp");
     if (!snakeSurface) {
         // Handle snake loading error
         return -1;
@@ -112,7 +112,7 @@ int main() {
 
       // Present the renderer
       SDL_RenderPresent(renderer);
-      SDL_Delay(120);
+      SDL_Delay(16);
      }
     SDL_DestroyTexture(spriteTexture);
     SDL_DestroyRenderer(renderer);
