@@ -44,7 +44,7 @@ int main() {
     }
 
     window = SDL_CreateWindow(
-	NULL,
+	"VIDEO GAME",
 	SDL_WINDOWPOS_UNDEFINED, //  position x  	
 	SDL_WINDOWPOS_UNDEFINED, // position y
         WIDTH, // Width window
