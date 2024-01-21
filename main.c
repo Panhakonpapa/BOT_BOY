@@ -15,11 +15,21 @@ typedef struct {
     int width;
     int height;
 } Snake;
+
+typedef struct {
+    int x;
+    int y;
+    int width;
+    int height;
+} Food;
 void snakeMovement(Snake *snake, int dx, int dy) {
     snake->x += dx;
     snake->y += dy;
 }
-
+Food CreateFood(int x, int y, int width, int height) { 
+    Food food = {x, y, width, height};
+    return food;
+}
 Snake Createsnake(int x, int y, int width, int height) {
     Snake snake = {x, y, width, height};
     return snake;
@@ -50,35 +60,68 @@ int main() {
 	           -1, // set flags to -1
 		   SDL_RENDERER_ACCELERATED // using graphic to drawing window
 		   );
+    
+//   RENDERING PIXEL SPRITE HERE  
+    
+    // MAP BACKGROUND //
     SDL_Surface* spriteSurface = SDL_LoadBMP("art/map.bmp");
     if (!spriteSurface) {
-        // Handle sprite loading error
         return -1;
     }
-
     SDL_Texture* spriteTexture = SDL_CreateTextureFromSurface(renderer, spriteSurface);
-    SDL_FreeSurface(spriteSurface);  // Free the surface, as it's no longer needed
-
-    if (!spriteTexture) {
-        // Handle texture creation error
+    SDL_FreeSurface(spriteSurface);
+    if (!spriteTexture) { 
         return -1;  
     }
 
 
+    // PLAYER GAME BOY // 
     SDL_Surface* snakeSurface = SDL_LoadBMP("art/blop.bmp");
     if (!snakeSurface) {
-        // Handle snake loading error
         return -1;
     }
-
     SDL_Texture* snakeTexture = SDL_CreateTextureFromSurface(renderer, snakeSurface);
-    SDL_FreeSurface(snakeSurface);  // Free the surface, as it's no longer needed
-
+    SDL_FreeSurface(snakeSurface); 
     if (!snakeTexture) {
-        // Handle texture creation error
+        return -1;
+     }
+
+
+    // ENERMY BOOM // 
+    SDL_Surface* bombSurface = SDL_LoadBMP("art/player.bmp");
+    if (!bombSurface) {
         return -1;
     }
-     Snake snake = Createsnake(100, 100, 50, 50);
+    SDL_Texture* bombTexture = SDL_CreateTextureFromSurface(renderer, bombSurface);
+    SDL_FreeSurface(bombSurface);  
+    if (!bombTexture) {
+        return -1;
+     }
+
+    SDL_Surface* foodSurface = SDL_LoadBMP("art/food.bmp");
+    if (!foodSurface) {
+        return -1;
+    }
+    SDL_Texture* foodTexture = SDL_CreateTextureFromSurface(renderer, foodSurface);
+    SDL_FreeSurface(foodSurface);  
+    if (!foodTexture) {
+        return -1;
+     }
+
+
+
+
+
+
+     // INIT the OBJECT SYSTEM OF THE GAME // 
+     Food food = CreateFood(300, 300, 50, 50); 
+     Snake snake = Createsnake(100, 100, 50, 50); 
+     Snake bomb = Createsnake(100, 100, 50, 50);
+    
+
+
+
+     // Game Event loop Hendling // 
      SDL_Event event;
      while (true) {
         // Main event Hendling Here // 	
@@ -109,6 +152,14 @@ int main() {
       // Render the snake
       SDL_Rect drawSnake = {snake.x, snake.y, snake.width, snake.height};
       SDL_RenderCopy(renderer, snakeTexture, NULL, &drawSnake);
+
+      // Render the Bomb 
+      SDL_Rect drawbomb = {bomb.x, bomb.y, bomb.width, bomb.height};
+      SDL_RenderCopy(renderer, bombTexture, NULL, &drawbomb);
+      
+      // Render the Food 
+      SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
+      SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood);
 
       // Present the renderer
       SDL_RenderPresent(renderer);
