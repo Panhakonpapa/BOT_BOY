@@ -9,6 +9,9 @@
 #define DELAY 400
 SDL_Window *window;
 SDL_Renderer *renderer;
+
+// Memeroy OF Snake // 
+//
 typedef struct {
     int x;
     int y;
@@ -16,24 +19,43 @@ typedef struct {
     int height;
 } Snake;
 
+// Memeroy of FOOD // 
+//
 typedef struct {
     int x;
     int y;
     int width;
     int height;
 } Food;
+
+// Snake Movement 
+//
 void snakeMovement(Snake *snake, int dx, int dy) {
     snake->x += dx;
     snake->y += dy;
 }
+// Fuction that Make Food 
+//
 Food CreateFood(int x, int y, int width, int height) { 
     Food food = {x, y, width, height};
     return food;
 }
+// Fuction that Make Snake
+//
 Snake Createsnake(int x, int y, int width, int height) {
     Snake snake = {x, y, width, height};
     return snake;
+} 
+
+// Curlission detection for the GAME // 
+//
+bool checkCollision(Snake* snake, Food* food) {
+    return (snake->x < food->x + food->width &&
+            snake->x + snake->width > food->x &&
+            snake->y < food->y + food->height &&
+            snake->y + snake->height > food->y);
 }
+
 int main() {
     printf("Initing the SDL_INTI SYSTEM...\n");
 
@@ -116,7 +138,7 @@ int main() {
      // INIT the OBJECT SYSTEM OF THE GAME // 
      Food food = CreateFood(300, 300, 50, 50); 
      Snake snake = Createsnake(100, 100, 50, 50); 
-     Snake bomb = Createsnake(100, 100, 50, 50);
+     Snake bomb = Createsnake(200, 200, 50, 50);
     
 
 
@@ -142,29 +164,41 @@ int main() {
         if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
             snakeMovement(&snake, 10, 0);
         }
-
+        
+        if (checkCollision(&snake, &food)) {
+        // Handle collision, e.g., stop player movement or deduct health
+        printf("Collision detected!\n");
+    }
       // Clear the renderer
+      //
       SDL_RenderClear(renderer);
 
       // Render the background
+      //
       SDL_RenderCopy(renderer, spriteTexture, NULL, NULL);
 
       // Render the snake
+      //
       SDL_Rect drawSnake = {snake.x, snake.y, snake.width, snake.height};
       SDL_RenderCopy(renderer, snakeTexture, NULL, &drawSnake);
 
-      // Render the Bomb 
+      // Render the Bomb
+      //
       SDL_Rect drawbomb = {bomb.x, bomb.y, bomb.width, bomb.height};
       SDL_RenderCopy(renderer, bombTexture, NULL, &drawbomb);
       
-      // Render the Food 
+      // Render the Food
+      //
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood);
 
       // Present the renderer
+      //
       SDL_RenderPresent(renderer);
       SDL_Delay(16);
      }
+
+
     SDL_DestroyTexture(spriteTexture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
