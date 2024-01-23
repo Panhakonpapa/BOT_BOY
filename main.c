@@ -7,6 +7,10 @@
 #define WIDTH_SNAKE 50
 #define HEIGHT_SNAKE 50
 #define DELAY 400
+#define RIGHT 10 
+#define LEFT -10
+#define UP 10 
+#define DOWN -10 
 SDL_Window *window;
 SDL_Renderer *renderer;
 
