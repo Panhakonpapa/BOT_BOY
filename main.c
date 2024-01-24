@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h> 
+#include <time.h>
 #define WIDTH 800
 #define HEIGHT 600
 #define WIDTH_SNAKE 50
@@ -28,8 +30,7 @@ typedef struct {
 typedef struct {
     int x;
     int y;
-    int width;
-    int height;
+    int width; int height;
 } Food;
 
 // Snake Movement 
@@ -44,6 +45,14 @@ Food CreateFood(int x, int y, int width, int height) {
     Food food = {x, y, width, height};
     return food;
 }
+
+void RandomFootPos(Food *food) {
+     srand(time(0));
+     int random_height = (rand() % 450);
+     int random_witdht = (rand() % 450);
+     food->x = random_witdht;
+     food->y = random_height;
+} 
 // Fuction that Make Snake
 //
 Snake Createsnake(int x, int y, int width, int height) {
@@ -61,6 +70,8 @@ bool checkCollision(Snake* snake, Food* food) {
 }
 
 int main() {
+    
+    int battery = 0;  
     printf("Initing the SDL_INTI SYSTEM...\n");
 
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -99,7 +110,6 @@ int main() {
     if (!spriteTexture) { 
         return -1;  
     }
-
 
     // PLAYER GAME BOY // 
     SDL_Surface* snakeSurface = SDL_LoadBMP("art/blop.bmp");
@@ -144,9 +154,24 @@ int main() {
      Snake snake = Createsnake(100, 100, 50, 50); 
      Snake bomb = Createsnake(200, 200, 50, 50);
     
+      // Clear the renderer
+      //
+      SDL_RenderClear(renderer);
 
+      // Render the background
+      //
+      SDL_RenderCopy(renderer, spriteTexture, NULL, NULL);
 
-
+      // Render the snake
+      //
+      SDL_Rect drawSnake = {snake.x, snake.y, snake.width, snake.height};
+      SDL_RenderCopy(renderer, snakeTexture, NULL, &drawSnake); 
+      SDL_RenderPresent(renderer);
+      // Rendering Food object  
+      //
+      SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
+      SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
+      SDL_RenderPresent(renderer);
      // Game Event loop Hendling // 
      SDL_Event event;
      while (true) {
@@ -170,8 +195,10 @@ int main() {
         }
         
         if (checkCollision(&snake, &food)) {
-        // Handle collision, e.g., stop player movement or deduct health
-        printf("Collision detected!\n");
+        // Handle collision, e.g., stop player movement or deduct health	
+        RandomFootPos(&food);  
+	battery += 100;  
+	printf("Batter life --> %d\n", battery);
     }
       // Clear the renderer
       //
@@ -190,12 +217,10 @@ int main() {
       //
       SDL_Rect drawbomb = {bomb.x, bomb.y, bomb.width, bomb.height};
       SDL_RenderCopy(renderer, bombTexture, NULL, &drawbomb);
-      
-      // Render the Food
-      //
+     
+      // Render a snake 
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
-      SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood);
-
+      SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
       // Present the renderer
       //
       SDL_RenderPresent(renderer);
