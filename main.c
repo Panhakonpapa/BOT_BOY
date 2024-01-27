@@ -1,3 +1,11 @@
+
+// THe goal for today  
+// get the enermy working 
+// clean up the code i write 
+// clean up stuff like varible 
+// fix some bug 
+// cleaan game  libary 
+// creatring better docimentation 
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,33 +26,40 @@ SDL_Renderer *renderer;
 
 // Memeroy OF Snake // 
 //
+//typedef struct {
+//    int x;
+//    int y;
+//    int width;
+//    int height;
+// } Enermy;
+
 typedef struct {
     int x;
     int y;
     int width;
     int height;
-} Snake;
+} Player;
 
-// Memeroy of FOOD // 
-//
+void playerMovement(Player *player, int dx, int dy) {
+    player->x += dx;
+    player->y += dy;
+}
+
+Player Createplayer(int x, int y, int width, int height) {
+    Player player = {x, y, width, height};
+    return player;
+} 
+ 
 typedef struct {
     int x;
     int y;
     int width; int height;
 } Food;
 
-// Snake Movement 
-//
-void snakeMovement(Snake *snake, int dx, int dy) {
-    snake->x += dx;
-    snake->y += dy;
-}
-// Fuction that Make Food 
-//
 Food CreateFood(int x, int y, int width, int height) { 
     Food food = {x, y, width, height};
     return food;
-}
+} 
 
 void RandomFootPos(Food *food) {
      srand(time(0));
@@ -53,21 +68,38 @@ void RandomFootPos(Food *food) {
      food->x = random_witdht;
      food->y = random_height;
 } 
-// Fuction that Make Snake
-//
-Snake Createsnake(int x, int y, int width, int height) {
-    Snake snake = {x, y, width, height};
-    return snake;
-} 
+
+
 
 // Curlission detection for the GAME // 
 //
-bool checkCollision(Snake* snake, Food* food) {
-    return (snake->x < food->x + food->width &&
-            snake->x + snake->width > food->x &&
-            snake->y < food->y + food->height &&
-            snake->y + snake->height > food->y);
+bool checkCollision(Player* player, Food* food) {
+    return (player->x < food->x + food->width &&
+            player->x + player->width > food->x &&
+            player->y < food->y + food->height &&
+            player->y + player->height > food->y);
 }
+
+
+// Adding AI to may Game project:) 
+
+void updatePlayerToEnermy(Enermy* enermy, Player* player) {
+	int DaltaX = player->x - enermy->x; 
+	int DaltaY = plyaer->y - enermy-y;
+	float distence = sqrt((DaltaX * DaltaX) - (DaltaY * DaltaY)); 
+
+	if (distence < DISTENC_CONSTANE) {
+		enermy-x = (player->x - enermy->x) * enermy->speed / distence; 
+		enermy-x = (player->y - enermy->y) * enermy->speed / distence; 
+	}
+	else {
+    		enermy-x = 100; 
+		enermy->y = 100; 
+	}
+}
+
+
+
 
 int main() {
     
@@ -112,16 +144,16 @@ int main() {
     }
 
     // PLAYER GAME BOY // 
-    SDL_Surface* snakeSurface = SDL_LoadBMP("art/blop.bmp");
-    if (!snakeSurface) {
+    SDL_Surface* playerSurface = SDL_LoadBMP("art/blop.bmp");
+    if (!playerSurface) {
         return -1;
     }
-    SDL_Texture* snakeTexture = SDL_CreateTextureFromSurface(renderer, snakeSurface);
-    SDL_FreeSurface(snakeSurface); 
-    if (!snakeTexture) {
+    SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(renderer,  playerSurface);
+    SDL_FreeSurface(playerSurface); 
+    if (!playerTexture) {
         return -1;
      }
-
+// I use neovim btw
 
     // ENERMY BOOM // 
     SDL_Surface* bombSurface = SDL_LoadBMP("art/player.bmp");
@@ -151,8 +183,8 @@ int main() {
 
      // INIT the OBJECT SYSTEM OF THE GAME // 
      Food food = CreateFood(300, 300, 50, 50); 
-     Snake snake = Createsnake(100, 100, 50, 50); 
-     Snake bomb = Createsnake(200, 200, 50, 50);
+     Player player = Createplayer(100, 100, 50, 50); 
+     Player bomb = Createplayer(200, 200, 50, 50);
     
       // Clear the renderer
       //
@@ -164,8 +196,8 @@ int main() {
 
       // Render the snake
       //
-      SDL_Rect drawSnake = {snake.x, snake.y, snake.width, snake.height};
-      SDL_RenderCopy(renderer, snakeTexture, NULL, &drawSnake); 
+      SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
+      SDL_RenderCopy(renderer, playerTexture, NULL, &drawPlayer); 
       SDL_RenderPresent(renderer);
       // Rendering Food object  
       //
@@ -182,19 +214,19 @@ int main() {
 	}	
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
         if (currentKeyStates[SDL_SCANCODE_UP]) {
-            snakeMovement(&snake, 0, -10);
+            playerMovement(&player, 0, -30);
         }
         if (currentKeyStates[SDL_SCANCODE_DOWN]) {
-            snakeMovement(&snake, 0, 10);
+            playerMovement(&player, 0, 30);
         }
         if (currentKeyStates[SDL_SCANCODE_LEFT]) {
-            snakeMovement(&snake, -10, 0);
+            playerMovement(&player, -30, 0);
         }
         if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
-            snakeMovement(&snake, 10, 0);
+            playerMovement(&player, 30, 0);
         }
         
-        if (checkCollision(&snake, &food)) {
+        if (checkCollision(&player, &food)) {
         // Handle collision, e.g., stop player movement or deduct health	
         RandomFootPos(&food);  
 	battery += 100;  
@@ -210,8 +242,8 @@ int main() {
 
       // Render the snake
       //
-      SDL_Rect drawSnake = {snake.x, snake.y, snake.width, snake.height};
-      SDL_RenderCopy(renderer, snakeTexture, NULL, &drawSnake);
+      SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
+      SDL_RenderCopy(renderer, playerTexture, NULL, &drawPlayer);
 
       // Render the Bomb
       //
