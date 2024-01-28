@@ -1,11 +1,4 @@
 
-// THe goal for today  
-// get the enermy working 
-// clean up the code i write 
-// clean up stuff like varible 
-// fix some bug 
-// cleaan game  libary 
-// creatring better docimentation 
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,19 +12,25 @@
 #define DELAY 400
 #define RIGHT 10 
 #define LEFT -10
-#define UP 10 
-#define DOWN -10 
+#define UP -10 
+#define DOWN 10
+#define DISTANCE_CONSTANT 200.0f
 SDL_Window *window;
 SDL_Renderer *renderer;
 
 // Memeroy OF Snake // 
-//
-//typedef struct {
-//    int x;
-//    int y;
-//    int width;
-//    int height;
-// } Enermy;
+typedef struct {
+    int x;
+    int y;
+    int width;
+    int height;
+    int speed; 
+} Enermy;
+
+Enermy CreateEnermy(int x, int y, int width, int height, int speed) {
+    Enermy enermy = {x, y, width, height, speed};
+    return enermy;
+} 
 
 typedef struct {
     int x;
@@ -53,7 +52,8 @@ Player Createplayer(int x, int y, int width, int height) {
 typedef struct {
     int x;
     int y;
-    int width; int height;
+    int width; 
+    int height;
 } Food;
 
 Food CreateFood(int x, int y, int width, int height) { 
@@ -72,7 +72,6 @@ void RandomFootPos(Food *food) {
 
 
 // Curlission detection for the GAME // 
-//
 bool checkCollision(Player* player, Food* food) {
     return (player->x < food->x + food->width &&
             player->x + player->width > food->x &&
@@ -82,25 +81,21 @@ bool checkCollision(Player* player, Food* food) {
 
 
 // Adding AI to may Game project:) 
-
 void updatePlayerToEnermy(Enermy* enermy, Player* player) {
-	int DaltaX = player->x - enermy->x; 
-	int DaltaY = plyaer->y - enermy-y;
-	float distence = sqrt((DaltaX * DaltaX) - (DaltaY * DaltaY)); 
+    int deltaX = player->x - enermy->x;
+    int deltaY = player->y - enermy->y;
+    float distance = sqrt(deltaX * deltaX + deltaY * deltaY);
 
-	if (distence < DISTENC_CONSTANE) {
-		enermy-x = (player->x - enermy->x) * enermy->speed / distence; 
-		enermy-x = (player->y - enermy->y) * enermy->speed / distence; 
-	}
-	else {
-    		enermy-x = 100; 
-		enermy->y = 100; 
-	}
+    if (distance < DISTANCE_CONSTANT) {
+        // Adjust the enemy's position based on the normalized direction
+        enermy->x += (player->x - enermy->x) * enermy->speed / distance;
+        enermy->y += (player->y - enermy->y) * enermy->speed / distance;
+    } else {
+        // Reset the enemy's position when the player is far away
+        enermy->x = 200;
+        enermy->y = 200;
+    }
 }
-
-
-
-
 int main() {
     
     int battery = 0;  
@@ -153,19 +148,20 @@ int main() {
     if (!playerTexture) {
         return -1;
      }
-// I use neovim btw
+
 
     // ENERMY BOOM // 
-    SDL_Surface* bombSurface = SDL_LoadBMP("art/player.bmp");
-    if (!bombSurface) {
+    SDL_Surface* enermySurface = SDL_LoadBMP("art/player.bmp");
+    if (!enermySurface) {
         return -1;
-    }
-    SDL_Texture* bombTexture = SDL_CreateTextureFromSurface(renderer, bombSurface);
-    SDL_FreeSurface(bombSurface);  
-    if (!bombTexture) {
+    } 
+    SDL_Texture* enermyTexture = SDL_CreateTextureFromSurface(renderer, enermySurface);
+    SDL_FreeSurface(enermySurface);  
+    if (!enermyTexture) {
         return -1;
      }
 
+    // FOOD FOR GAME // 
     SDL_Surface* foodSurface = SDL_LoadBMP("art/food.bmp");
     if (!foodSurface) {
         return -1;
@@ -177,34 +173,34 @@ int main() {
      }
 
 
-
-
-
-
      // INIT the OBJECT SYSTEM OF THE GAME // 
      Food food = CreateFood(300, 300, 50, 50); 
      Player player = Createplayer(100, 100, 50, 50); 
-     Player bomb = Createplayer(200, 200, 50, 50);
-    
-      // Clear the renderer
-      //
+     Enermy enermy = CreateEnermy(200, 200, 50, 50, 5);
+   // {
+   //  enermy.x = 200
+   //  enermy.y = 200
+   //  enermy.width = 50
+   //  enermy.height = 50
+   // } 
+
+     // Clear the renderer
       SDL_RenderClear(renderer);
 
       // Render the background
-      //
       SDL_RenderCopy(renderer, spriteTexture, NULL, NULL);
 
       // Render the snake
-      //
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
       SDL_RenderCopy(renderer, playerTexture, NULL, &drawPlayer); 
       SDL_RenderPresent(renderer);
+      
       // Rendering Food object  
-      //
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
       SDL_RenderPresent(renderer);
-     // Game Event loop Hendling // 
+     
+      // Game Event loop Hendling // 
      SDL_Event event;
      while (true) {
         // Main event Hendling Here // 	
@@ -214,16 +210,16 @@ int main() {
 	}	
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
         if (currentKeyStates[SDL_SCANCODE_UP]) {
-            playerMovement(&player, 0, -30);
+            playerMovement(&player, 0, UP);
         }
         if (currentKeyStates[SDL_SCANCODE_DOWN]) {
-            playerMovement(&player, 0, 30);
+            playerMovement(&player, 0, DOWN);
         }
         if (currentKeyStates[SDL_SCANCODE_LEFT]) {
-            playerMovement(&player, -30, 0);
+            playerMovement(&player, LEFT, 0);
         }
         if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
-            playerMovement(&player, 30, 0);
+            playerMovement(&player, RIGHT, 0);
         }
         
         if (checkCollision(&player, &food)) {
@@ -232,8 +228,8 @@ int main() {
 	battery += 100;  
 	printf("Batter life --> %d\n", battery);
     }
+     updatePlayerToEnermy(&enermy, &player);
       // Clear the renderer
-      //
       SDL_RenderClear(renderer);
 
       // Render the background
@@ -246,9 +242,9 @@ int main() {
       SDL_RenderCopy(renderer, playerTexture, NULL, &drawPlayer);
 
       // Render the Bomb
-      //
-      SDL_Rect drawbomb = {bomb.x, bomb.y, bomb.width, bomb.height};
-      SDL_RenderCopy(renderer, bombTexture, NULL, &drawbomb);
+      //  
+      SDL_Rect drawEnermy = {enermy.x, enermy.y, enermy.width, enermy.height};
+      SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy);
      
       // Render a snake 
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};

@@ -1,9 +1,9 @@
 # Compiler and compiler flags
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -std=c11 -lm
 
 # SDL flags
-SDL_FLAGS = -lSDL2
+SDL_FLAGS = -lSDL2 
 
 # Source and output files
 SRC = main.c  
