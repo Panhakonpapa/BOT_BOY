@@ -80,6 +80,26 @@ bool checkCollision(Player* player, Food* food) {
 }
 
 
+void updatePlayerToEnermy(Enermy* enermy, Player* player) {
+	for (int i = 0; i <= 3; i++) {
+		
+                  int deltaX = player->x - enermy[i]->x;
+                  int deltaY = player->y - enermy[i]->y;
+                  float distance = sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                  if (distance < DISTANCE_CONSTANT) {
+                  // Adjust the enemy's position based on the normalized direction
+                           enermy[i]->x += (player->x - enermy[i]->x) * enermy[i]->speed / distance;
+                           enermy[i]->y += (player->y - enermy[i]->y) * enermy[i]->speed / distance;
+                  } else {
+                  // Reset the enemy's position when the player is far away
+                         enermy[i]->x = 200;
+                         enermy[i]->y = 200;
+                  }
+
+
+	   }
+}
 // Adding AI to may Game project:) 
 void updatePlayerToEnermy(Enermy* enermy, Player* player) {
     int deltaX = player->x - enermy->x;
@@ -98,7 +118,7 @@ void updatePlayerToEnermy(Enermy* enermy, Player* player) {
 }
 int main() {
     
-    int battery = 0;  
+    float battery = 0.1f;  
     printf("Initing the SDL_INTI SYSTEM...\n");
 
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -128,7 +148,7 @@ int main() {
 //   RENDERING PIXEL SPRITE HERE  
     
     // MAP BACKGROUND //
-    SDL_Surface* spriteSurface = SDL_LoadBMP("art/map.bmp");
+    SDL_Surface* spriteSurface = SDL_LoadBMP("art/mapRobo.bmp");
     if (!spriteSurface) {
         return -1;
     }
@@ -137,6 +157,7 @@ int main() {
     if (!spriteTexture) { 
         return -1;  
     }
+    printf("Loading Bitmap Background success :)...\n"); 
 
     // PLAYER GAME BOY // 
     SDL_Surface* playerSurface = SDL_LoadBMP("art/blop.bmp");
@@ -148,7 +169,7 @@ int main() {
     if (!playerTexture) {
         return -1;
      }
-
+    printf("Loading Bitmap Player success :)...\n"); 
 
     // ENERMY BOOM // 
     SDL_Surface* enermySurface = SDL_LoadBMP("art/player.bmp");
@@ -160,7 +181,8 @@ int main() {
     if (!enermyTexture) {
         return -1;
      }
-
+    printf("Loading Bitmap Enermy success :)...\n"); 
+    
     // FOOD FOR GAME // 
     SDL_Surface* foodSurface = SDL_LoadBMP("art/food.bmp");
     if (!foodSurface) {
@@ -171,19 +193,12 @@ int main() {
     if (!foodTexture) {
         return -1;
      }
-
+    printf("Loading Bitmap Food success :)...\n"); 
 
      // INIT the OBJECT SYSTEM OF THE GAME // 
      Food food = CreateFood(300, 300, 50, 50); 
      Player player = Createplayer(100, 100, 50, 50); 
      Enermy enermy = CreateEnermy(200, 200, 50, 50, 5);
-   // {
-   //  enermy.x = 200
-   //  enermy.y = 200
-   //  enermy.width = 50
-   //  enermy.height = 50
-   // } 
-
      // Clear the renderer
       SDL_RenderClear(renderer);
 
@@ -199,7 +214,7 @@ int main() {
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
       SDL_RenderPresent(renderer);
-     
+      printf("Entering Main()\n"); 
       // Game Event loop Hendling // 
      SDL_Event event;
      while (true) {
@@ -225,8 +240,8 @@ int main() {
         if (checkCollision(&player, &food)) {
         // Handle collision, e.g., stop player movement or deduct health	
         RandomFootPos(&food);  
-	battery += 100;  
-	printf("Batter life --> %d\n", battery);
+	battery += 1.1f;  
+	printf("[  Scores  ] {---} [ %.1f ]\n ", battery);
     }
      updatePlayerToEnermy(&enermy, &player);
       // Clear the renderer
@@ -245,7 +260,10 @@ int main() {
       //  
       SDL_Rect drawEnermy = {enermy.x, enermy.y, enermy.width, enermy.height};
       SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy);
-     
+
+      SDL_Rect drawEnermy0 = {enermy.x + 100, enermy.y + 100, enermy.width, enermy.height};
+      SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy0);
+      
       // Render a snake 
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
