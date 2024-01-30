@@ -1,6 +1,4 @@
 // Sanke Logic revap --> ROBOT.BAT VIDEO GAME 
-// Memeroy OF Snake //
-//
 typedef struct {
     int x;
     int y;
