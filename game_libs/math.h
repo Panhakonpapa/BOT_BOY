@@ -1,10 +1,15 @@
-#ifndef SNAKE_FORMULAS_H
-#define SNAKE_FORMULAS_H
-#include "math.h"
+void updatePlayerToEnermy(Enermy* enermy, Player* player) {
+    int deltaX = player->x - enermy->x;
+    int deltaY = player->y - enermy->y;
+    float distance = sqrt(deltaX * deltaX + deltaY * deltaY);
 
-double distance( int x1, int y1, int x2, int y2 )
-{
-    return sqrt( pow( x2 - x1, 2 ) + pow( y2 - y1, 2 ) );
+    if (distance < DISTANCE_CONSTANT) {
+        // Adjust the enemy's position based on the normalized direction
+        enermy->x += (player->x - enermy->x) * enermy->speed / distance;
+        enermy->y += (player->y - enermy->y) * enermy->speed / distance;
+    } else {
+        // Reset the enemy's position when the player is far away
+        enermy->x = 200;
+        enermy->y = 200;
+    }
 }
-
-#endif //SNAKE_FORMULAS_H
