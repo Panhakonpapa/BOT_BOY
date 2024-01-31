@@ -4,16 +4,17 @@
 #include <stdbool.h>
 #include <math.h> 
 #include <time.h>
+
 #define WIDTH 800
 #define HEIGHT 600
 #define WIDTH_SNAKE 50
 #define HEIGHT_SNAKE 50
 #define DELAY 400
-#define RIGHT 10 
-#define LEFT -10
-#define UP -10 
-#define DOWN 10
-#define DISTANCE_CONSTANT 200.0f
+#define RIGHT 20 
+#define LEFT -20
+#define UP -20 
+#define DOWN 20
+#define DISTANCE_CONSTANT 100.0f
 SDL_Window *window;
 SDL_Renderer *renderer;
 
@@ -78,33 +79,11 @@ bool checkCollision(Player* player, Food* food) {
             player->y + player->height > food->y);
 }
 
-
-void updatePlayerToEnermy(Enermy* enermy, Player* player) {
-	for (int i = 0; i <= 3; i++) {
-		
-                  int deltaX = player->x - enermy[i]->x;
-                  int deltaY = player->y - enermy[i]->y;
-                  float distance = sqrt(deltaX * deltaX + deltaY * deltaY);
-
-                  if (distance < DISTANCE_CONSTANT) {
-                  // Adjust the enemy's position based on the normalized direction
-                           enermy[i]->x += (player->x - enermy[i]->x) * enermy[i]->speed / distance;
-                           enermy[i]->y += (player->y - enermy[i]->y) * enermy[i]->speed / distance;
-                  } else {
-                  // Reset the enemy's position when the player is far away
-                         enermy[i]->x = 200;
-                         enermy[i]->y = 200;
-                  }
-
-
-	   }
-}
 // Adding AI to may Game project:) 
-void updatePlayerToEnermy(Enermy* enermy, Player* player) {
+void updatePlayerToEnermy1(Enermy* enermy, Player* player) {
     int deltaX = player->x - enermy->x;
     int deltaY = player->y - enermy->y;
     float distance = sqrt(deltaX * deltaX + deltaY * deltaY);
-
     if (distance < DISTANCE_CONSTANT) {
         // Adjust the enemy's position based on the normalized direction
         enermy->x += (player->x - enermy->x) * enermy->speed / distance;
@@ -115,6 +94,7 @@ void updatePlayerToEnermy(Enermy* enermy, Player* player) {
         enermy->y = 200;
     }
 }
+
 int main() {
     
     float battery = 0.1f;  
@@ -197,7 +177,8 @@ int main() {
      // INIT the OBJECT SYSTEM OF THE GAME // 
      Food food = CreateFood(300, 300, 50, 50); 
      Player player = Createplayer(100, 100, 50, 50); 
-     Enermy enermy = CreateEnermy(200, 200, 50, 50, 5);
+     Enermy enermy1 = CreateEnermy(200, 200, 50, 50, 5); 
+
      // Clear the renderer
       SDL_RenderClear(renderer);
 
@@ -242,28 +223,41 @@ int main() {
 	battery += 1.1f;  
 	printf("[  Scores  ] {---} [ %.1f ]\n ", battery);
     }
-     updatePlayerToEnermy(&enermy, &player);
-      // Clear the renderer
+     updatePlayerToEnermy1(&enermy1, &player);  
+     // Clear the renderer
       SDL_RenderClear(renderer);
 
       // Render the background
       //
       SDL_RenderCopy(renderer, spriteTexture, NULL, NULL);
 
-      // Render the snake
+      // Render my GAMEBOY
       //
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
       SDL_RenderCopy(renderer, playerTexture, NULL, &drawPlayer);
 
       // Render the Bomb
       //  
-      SDL_Rect drawEnermy = {enermy.x, enermy.y, enermy.width, enermy.height};
-      SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy);
-
-      SDL_Rect drawEnermy0 = {enermy.x + 100, enermy.y + 100, enermy.width, enermy.height};
-      SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy0);
+      SDL_Rect drawEnermy1 = {enermy1.x, enermy1.y, enermy1.width, enermy1.height};
+      SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy1);	      
       
-      // Render a snake 
+      srand(time(0)); 
+      int random_x; 
+      int random_y; 
+      random_x = (rand() % 450);  
+      random_y = (rand() % 450); 
+      
+      SDL_Rect drawEnermy2 = {random_x, random_y, enermy1.width, enermy1.height};
+      SDL_RenderCopy(renderer,  enermyTexture, NULL, &drawEnermy2); 
+      
+      int random_x1; 
+      int random_y1; 
+      random_x1 = (rand() % 450);  
+      random_y1 = (rand() % 450); 
+      SDL_Rect drawEnermy3 = {random_x1, random_y1, enermy1.width, enermy1.height};
+      SDL_RenderCopy(renderer,  enermyTexture, NULL, &drawEnermy3); 
+      
+      // Render a food
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
       // Present the renderer
