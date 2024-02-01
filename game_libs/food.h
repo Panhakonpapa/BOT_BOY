@@ -1,19 +1,23 @@
 //           Libary for rendering food // 19/Jan/2024/ // no use case // for my game//   
-//
-struct Food {
-   int x;
-   int y;
+#ifdef FOOD_H
+#define FOOD_H
+Food CreateFood(int x, int y, int width, int heigth) {
+	Food food = {x, y, width, height};
+	return food;  
 }
-void updateFood(struct Food *food, SDL_Renderer *renderer) {
-      SDL_Rect rect = {food->x, food->y, 20, 20};
-      SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-      SDL_RenderFillRect(renderer, &rect);
-      SDL_RenderDrawRect(rendeerer, &rect);
+
+void RandomFootPos(Food *food) {
+	srand(time(NULL)); 
+	int random_x = (rand() % 450); 
+	int random_y = (rand() % 450); 
+	food->x = random_x; 
+	food->y = random_x; 
 }
-int RandomFootPos(struct Food *food) {
-     srand(time(0));
-     int random_height = (rand() % 500);
-     int random_witdht = (rand() % 500);
-     food->x = random_witdht;
-     food->y = random_height;
+// Curlission detection for the GAME //
+bool checkCollision(Player* player, Food* food) {
+    return (player->x < food->x + food->width &&
+            player->x + player->width > food->x &&
+            player->y < food->y + food->height &&
+            player->y + player->height > food->y);
 }
+#endif 

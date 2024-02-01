@@ -1,3 +1,5 @@
+#ifndef MATH_H
+#define MATH_H 
 void updatePlayerToEnermy(Enermy* enermy, Player* player) {
     int deltaX = player->x - enermy->x;
     int deltaY = player->y - enermy->y;
@@ -13,3 +15,4 @@ void updatePlayerToEnermy(Enermy* enermy, Player* player) {
         enermy->y = 200;
     }
 }
+#endif 
