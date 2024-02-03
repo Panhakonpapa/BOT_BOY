@@ -1,10 +1,10 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h> 
 #include <time.h>
-
 #define WIDTH 800
 #define HEIGHT 600
 #define WIDTH_SNAKE 50
@@ -17,6 +17,8 @@
 #define DISTANCE_CONSTANT 100.0f
 SDL_Window *window;
 SDL_Renderer *renderer;
+TTF_Font* font; // Font for rendering text
+SDL_Color textColor = {255, 255, 255, 255}; // White color
 
 // Memeroy OF Snake // 
 typedef struct {
@@ -94,17 +96,40 @@ void updatePlayerToEnermy1(Enermy* enermy, Player* player) {
         enermy->y = 200;
     }
 }
+// Function to render text on the screen
+void renderText(const char* text, int x, int y) {
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text, textColor);
+    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
+    SDL_Rect destRect = {x, y, textSurface->w, textSurface->h};
+
+    SDL_RenderCopy(renderer, textTexture, NULL, &destRect);
+
+    SDL_FreeSurface(textSurface);
+    SDL_DestroyTexture(textTexture);
+}
+// Function to render text on the screen
 int main() {
-    
-    float battery = 0.1f;  
     printf("Initing the SDL_INTI SYSTEM...\n");
-
+    int score = 0; 
     SDL_Init(SDL_INIT_EVERYTHING);
+    TTF_Init();
+    SDL_Init(SDL_INIT_VIDEO);
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-	printf("Someting went wrong with SDL_INIT...\n");
+	printf("Someting went wrong with SDL_INIT...\n"); 
+        exit(EXIT_FAILURE);  // Exit the program or handle the error accordingly
     }
+    
+    if (TTF_Init() < 0) {
+        fprintf(stderr, "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+        exit(EXIT_FAILURE);  // Exit the program or handle the error accordingly
+    }
+    
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    fprintf(stderr, "SDL could not initialize! SDL Error: %s\n", SDL_GetError());
+    exit(EXIT_FAILURE);  // Exit the program or handle the error accordingly
+}
 
     window = SDL_CreateWindow(
 	"VIDEO GAME",
@@ -123,7 +148,15 @@ int main() {
 	           -1, // set flags to -1
 		   SDL_RENDERER_ACCELERATED // using graphic to drawing window
 		   );
-    
+
+     const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";
+     font = TTF_OpenFont(fontPath, 24);
+     if (!font) {
+             fprintf(stderr, "Unable to load font! SDL_ttf Error: %s\n", TTF_GetError());
+    	     printf("Exit_FALURE\n");  
+	     return -1;  
+      } 
+
 //   RENDERING PIXEL SPRITE HERE  
     
     // MAP BACKGROUND //
@@ -174,7 +207,13 @@ int main() {
      }
     printf("Loading Bitmap Food success :)...\n"); 
 
-     // INIT the OBJECT SYSTEM OF THE GAME // 
+
+    SDL_Surface* textSurface = NULL;
+    SDL_Texture* textTexture = NULL;
+    printf("INIT_TEXTUE_FONT\n");
+
+
+    // INIT the OBJECT SYSTEM OF THE GAME // 
      Food food = CreateFood(300, 300, 50, 50); 
      Player player = Createplayer(100, 100, 50, 50); 
      Enermy enermy1 = CreateEnermy(200, 200, 50, 50, 5); 
@@ -218,21 +257,32 @@ int main() {
         }
         
         if (checkCollision(&player, &food)) {
-        // Handle collision, e.g., stop player movement or deduct health	
-        RandomFootPos(&food);  
-	battery += 1.1f;  
-	printf("[  Scores  ] {---} [ %.1f ]\n ", battery);
-    }
+           // Handle collision, e.g., stop player movement or deduct health	
+           RandomFootPos(&food);  
+           // Score on the window 
+	    score++;
+     }
      updatePlayerToEnermy1(&enermy1, &player);  
      // Clear the renderer
       SDL_RenderClear(renderer);
-
-      // Render the background
-      //
       SDL_RenderCopy(renderer, spriteTexture, NULL, NULL);
 
+
+      char scoreText[20];
+      sprintf(scoreText, "Score: %d", score);
+      textSurface = TTF_RenderText_Solid(font, scoreText, textColor); 
+      SDL_Color bgColor = {0, 0, 0, 255};  // Black background color   
+      SDL_Color fgColor = {255, 255, 255, 255};  // White foreground color   
+      textSurface = TTF_RenderText_Shaded(font, scoreText, bgColor, fgColor);
+      textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);   
+      int textX = (WIDTH - textSurface->w) / 2;
+      int textY = 10;   
+      SDL_Rect textRect = {textX, textY, textSurface->w, textSurface->h};  
+      SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+     
+
+
       // Render my GAMEBOY
-      //
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
       SDL_RenderCopy(renderer, playerTexture, NULL, &drawPlayer);
 // CODE BASE IN BUG FIXING 
@@ -276,9 +326,13 @@ int main() {
       SDL_RenderPresent(renderer);
       SDL_Delay(16);
      }
+
+    TTF_CloseFont(font);
+    TTF_Quit();
     SDL_DestroyTexture(spriteTexture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
-   return 0;
+   
+    return 0;
 } 
