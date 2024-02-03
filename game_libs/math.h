@@ -1,5 +1,24 @@
 #ifndef MATH_H
 #define MATH_H 
+
+#include <math.h> 
+#define DISTANCE_CONSTANT 100.0f
+typedef struct {
+    int x;
+    int y;
+    int width;
+    int height;
+} Player;
+
+
+typedef struct {
+    int x;
+    int y;
+    int width;
+    int height;
+    int speed; 
+} Enermy;
+
 void updatePlayerToEnermy(Enermy* enermy, Player* player) {
     int deltaX = player->x - enermy->x;
     int deltaY = player->y - enermy->y;

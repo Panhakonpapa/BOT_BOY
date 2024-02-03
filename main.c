@@ -235,12 +235,14 @@ int main() {
       //
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
       SDL_RenderCopy(renderer, playerTexture, NULL, &drawPlayer);
+// CODE BASE IN BUG FIXING 
 
       // Render the Bomb
       //  
       SDL_Rect drawEnermy1 = {enermy1.x, enermy1.y, enermy1.width, enermy1.height};
       SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy1);	      
-      
+
+      // Fix this thing it a mess clean it up dude 
       srand(time(0)); 
       int random_x; 
       int random_y; 
@@ -249,14 +251,23 @@ int main() {
       
       SDL_Rect drawEnermy2 = {random_x, random_y, enermy1.width, enermy1.height};
       SDL_RenderCopy(renderer,  enermyTexture, NULL, &drawEnermy2); 
-      
+ 
+      // Fix this thing it a mess clean it up dude 
       int random_x1; 
       int random_y1; 
       random_x1 = (rand() % 450);  
       random_y1 = (rand() % 450); 
+      
       SDL_Rect drawEnermy3 = {random_x1, random_y1, enermy1.width, enermy1.height};
       SDL_RenderCopy(renderer,  enermyTexture, NULL, &drawEnermy3); 
       
+      
+
+
+// CODE BASE IN BUG FIXING 
+      
+
+
       // Render a food
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
@@ -265,8 +276,6 @@ int main() {
       SDL_RenderPresent(renderer);
       SDL_Delay(16);
      }
-
-
     SDL_DestroyTexture(spriteTexture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
