@@ -17,7 +17,7 @@
 #define LEFT -20
 #define UP -20 
 #define DOWN 20
-#define DISTANCE_CONSTANT 200.0f
+#define DISTANCE_CONSTANT 100.0f
 SDL_Window *window;
 SDL_Renderer *renderer;
 TTF_Font* font; // Font for rendering text
@@ -97,21 +97,6 @@ void updatePlayerToEnermy1(Enermy* enermy, Player* player) {
         enermy->y = 200;
     }
 }
-
-void updatePlayerToVIM(Enermy* VIM, Player* player) {
-    int deltaX = player->x - VIM->x;
-    int deltaY = player->y - VIM->y;
-    float distance = sqrt(deltaX * deltaX + deltaY * deltaY);
-    if (distance < DISTANCE_CONSTANT) {
-        // Adjust the enemy's position based on the normalized direction
-        VIM->x += (player->x - VIM->x) * VIM->speed / distance;
-        VIM->y += (player->y - VIM->y) * VIM->speed / distance;
-    } else {
-        // Reset the enemy's position when the player is far away
-        VIM->x = 450;
-        VIM->y = 450;
-    }
-}
 void render2Enermy(SDL_Texture* enermyTexture, SDL_Renderer* renderer) {
       srand(time(0)); 
       int random_x; 
@@ -166,7 +151,7 @@ int main() {
 		   );
 
      const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";
-     font = TTF_OpenFont(fontPath, 23);
+     font = TTF_OpenFont(fontPath, 24);
      if (!font) {
              fprintf(stderr, "Unable to load font! SDL_ttf Error: %s\n", TTF_GetError());
     	     printf("Exit_FALURE\n");  
@@ -242,8 +227,8 @@ int main() {
     // INIT the OBJECT SYSTEM OF THE GAME // 
      Food food = CreateFood(300, 300, 50, 50); 
      Player player = Createplayer(100, 100, 50, 50); 
-     Enermy enermy1 = CreateEnermy(200, 200, 50, 50, 1);  
-     Enermy VIM = CreateEnermy(400, 400, 50, 50, 1); 
+     Enermy enermy1 = CreateEnermy(200, 200, 50, 50, 5); 
+     Enermy VIM = CreateEnermy(400, 400, 50, 50, 5); 
      // Clear the renderer
       SDL_RenderClear(renderer);
 
@@ -295,14 +280,14 @@ int main() {
 
 
       char scoreText[20];
-      sprintf(scoreText, "%d", score);
+      sprintf(scoreText, "Score: %d", score);
       SDL_Color bgColor = {0, 0, 0, 255};  // Black background color   
       SDL_Color fgColor = {255, 255, 255, 255};  // White foreground color   
       textSurface = TTF_RenderText_Shaded(font, scoreText, bgColor, fgColor);
       textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);   
       int textX = (WIDTH - textSurface->w) / 2;
       int textY = 10;   
-      SDL_Rect textRect = {textX, textY, 100, 50};  
+      SDL_Rect textRect = {textX, textY, textSurface->w, textSurface->h};  
       SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
      
 
@@ -315,8 +300,21 @@ int main() {
       updatePlayerToEnermy1(&enermy1, &player);  
       SDL_Rect drawEnermy1 = {enermy1.x, enermy1.y, enermy1.width, enermy1.height};
       SDL_RenderCopy(renderer,  enermyTexture , NULL, &drawEnermy1);	      
+
+      render2Enermy(enermyTexture, renderer); 
       
-      updatePlayerToVIM(&VIM, &player);  
+	 
+      int speedDown = 10; 
+      int speedUP = -10; 
+      VIM.y += 10; 	 
+      if (VIM.y + VIM.height >= HEIGHT) {  
+		VIM.y = HEIGHT - VIM.height; 
+		VIM.y -= speedUP; 
+	 }	 
+      if (VIM.y <= 0) {
+	  VIM.y = 0; 
+	  VIM.y += speedDown;
+      }
       render3Enermy(enermyBBBTexture, renderer, &VIM); 
 
 
