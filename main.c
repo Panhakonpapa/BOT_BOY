@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <math.h> 
 #include <time.h>
+#include <unistd.h>
 #define WIDTH 800
 #define HEIGHT 600
 #define WIDTH_SNAKE 50
@@ -39,7 +40,7 @@ Enermy CreateEnermy(int x, int y, int width, int height, int speed) {
 typedef struct {
     int x;
     int y;
-    int width;
+    int width; 
     int height;
 } Player;
 
@@ -113,7 +114,7 @@ void updatePlayerToVIM(Enermy* VIM, Player* player) {
     }
 }
 void render2Enermy(SDL_Texture* enermyTexture, SDL_Renderer* renderer) {
-      srand(time(0)); 
+      srand(time(0));  
       int random_x; 
       int random_y; 
       random_x = (rand() % 450);  
@@ -320,6 +321,7 @@ int main() {
       render3Enermy(enermyBBBTexture, renderer, &VIM); 
 
 
+      render2Enermy(enermyTexture, renderer);
       // Render a food
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
