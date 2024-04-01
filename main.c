@@ -102,22 +102,6 @@ void updatePlayerToEnermy1(Enermy* enermy, Player* player) {
     }
 }
 
-//* Fix what the fuck is this lol 
-void updatePlayerToVIM(Enermy* VIM, Player* player) {
-    int deltaX = player->x - VIM->x;
-    int deltaY = player->y - VIM->y;
-    float distance = sqrt(deltaX * deltaX + deltaY * deltaY);
-    if (distance < DISTANCE_CONSTANT) {
-        // Adjust the enemy's position based on the normalized direction
-        VIM->x += (player->x - VIM->x) * VIM->speed / distance;
-        VIM->y += (player->y - VIM->y) * VIM->speed / distance;
-    } else {
-        // Reset the enemy's position when the player is far away
-        VIM->x = 450;
-        VIM->y = 450;
-    }
-}
-
 
 //* Okay set food on rendome position and render it on the screen // 
 void render2Enermy(SDL_Texture* enermyTexture, SDL_Renderer* renderer) {
@@ -129,10 +113,7 @@ void render2Enermy(SDL_Texture* enermyTexture, SDL_Renderer* renderer) {
       SDL_RenderCopy(renderer,  enermyTexture, NULL, &drawEnermy); 
 }
 
-void render3Enermy(SDL_Texture* enermyBBBTexture, SDL_Renderer* renderer, Enermy* VIM) {
-	SDL_Rect drawEnermy = {VIM->x, VIM->y, VIM->width, VIM->height}; 
-	SDL_RenderCopy(renderer,  enermyBBBTexture, NULL, &drawEnermy); 
-}
+
 //* This part must be in another header file for renderer // 
 int main() {
     printf("Initing the SDL_INTI SYSTEM...\n");
@@ -142,7 +123,7 @@ int main() {
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 	printf("Someting went wrong with SDL_INIT...\n"); 
-        exit(EXIT_FAILURE);  // Exit the program or handle the error accordingly
+        exit(EXIT_FAILURE);  
     }
     
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -151,12 +132,12 @@ int main() {
 }
 
     window = SDL_CreateWindow(
-	"VIDEO GAME",
-	SDL_WINDOWPOS_UNDEFINED, //  position x  	
-	SDL_WINDOWPOS_UNDEFINED, // position y
-        WIDTH, // Width window
-	HEIGHT, // Height window
-	0); // 0 is the flags
+	"BOT BOY",
+	SDL_WINDOWPOS_UNDEFINED,  	
+	SDL_WINDOWPOS_UNDEFINED, 
+        WIDTH, 
+	HEIGHT,
+	0); 
 
      if (window == NULL) {
 	printf("There is no window UwU... \n");	
