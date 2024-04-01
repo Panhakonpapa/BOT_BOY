@@ -2,7 +2,7 @@
 const char* spritePath = "art/mapRobo.bmp";
 SDL_Surface* spriteSurface = NULL;
 SDL_Texture* spriteTexture = NULL; 
-SDL_Texture* Texture(SDL_Renderer* renderer) {
+SDL_Texture* mapTexture(SDL_Renderer* renderer) {
 	spriteSurface = SDL_LoadBMP(spritePath);
 	if (spriteSurface == NULL) {
 		perror("Error spritePath can't open\n"); 

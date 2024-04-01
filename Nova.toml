@@ -1,8 +1,11 @@
-
-
+name = "BOT_BOY" 
+version = "2.0.1"
+author = "Kitten8080"
 
 file1 = player.c 
 file2 = map.c 
 file3 = renderText.c
-
+file4 = physics.c
+file5 = food.c 
+file6 = Enermy.c 
 
