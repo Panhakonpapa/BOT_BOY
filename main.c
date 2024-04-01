@@ -26,9 +26,8 @@
 
 SDL_Window *window;
 SDL_Renderer *renderer;
-TTF_Font* font; // Font for rendering text
 
-// Memeroy OF Snake // 
+
 typedef struct {
     int x;
     int y;
