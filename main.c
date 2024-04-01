@@ -9,6 +9,7 @@
 #include "renderText.h"
 #include "map.h"
 #include "player.h"
+
 #define WIDTH 800
 #define HEIGHT 600
 #define WIDTH_SNAKE 50
