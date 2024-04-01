@@ -1,4 +1,4 @@
-# Battery Eater
+# BOT BOY
 
 Battery Eater is a simple game built using SDL where you, as a bot, must eat batteries to stay alive while avoiding enemies.
 
