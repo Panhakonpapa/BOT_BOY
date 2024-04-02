@@ -62,7 +62,13 @@ int main() {
 	           -1,
 		   SDL_RENDERER_ACCELERATED 
 		   );
-
+      
+    const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";  
+    init_texture();
+    openFont(fontPath);
+    SDL_Texture* Entexture = enermyTexture(renderer); 
+    SDL_Texture* Playertexture = PlayerTexture(renderer);
+    SDL_Texture* Mapping = mapTexture(renderer); 
     SDL_Surface* foodSurface = SDL_LoadBMP("art/food.bmp");
     SDL_Texture* foodTexture = SDL_CreateTextureFromSurface(renderer, foodSurface);
     if (!foodSurface && !foodTexture) {
@@ -101,18 +107,18 @@ int main() {
       } 
       updatePlayerToEnermy1(&enermy, &player);    
       SDL_RenderClear(renderer);
-      SDL_RenderCopy(renderer, mapTexture(renderer), NULL, NULL);	 
+      SDL_RenderCopy(renderer, Mapping, NULL, NULL);	 
       
       renderText(renderer, score); 
       
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
-      SDL_RenderCopy(renderer, PlayerTexture(renderer), NULL, &drawPlayer);
+      SDL_RenderCopy(renderer, Playertexture, NULL, &drawPlayer);
 
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
      
       SDL_Rect Enermy = {enermy.x, enermy.y, ENERMY_WIDTH, ENERMY_HEIGHT};
-      SDL_RenderCopy(renderer, enermyTexture(renderer), NULL, &Enermy); 
+      SDL_RenderCopy(renderer, Entexture, NULL, &Enermy); 
      
       SDL_RenderPresent(renderer);
       SDL_Delay(16);

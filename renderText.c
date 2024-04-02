@@ -1,5 +1,4 @@
 #include "renderText.h" 
-const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";
 TTF_Font* font; 
 SDL_Surface* textSurface = NULL; 
 SDL_Texture* textTexture = NULL; 
@@ -18,9 +17,7 @@ void init_texture() {
 }
 
 void renderText(SDL_Renderer* renderer, int score) {
-      init_texture();
-      openFont(fontPath);
-      char scoreText[20]; sprintf(scoreText, "%d", score);
+     char scoreText[20]; sprintf(scoreText, "%d", score);
       //* set color for texture // 
       SDL_Color bgColor = {0, 0, 0, 255};     
       SDL_Color fgColor = {255, 255, 255, 255};   
