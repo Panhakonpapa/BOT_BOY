@@ -11,6 +11,7 @@
 #include "Enermy.h"
 #include "food.h" 
 #include "physics.h"
+#include "gameover.h" 
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -28,13 +29,12 @@
 
 SDL_Window *window;
 SDL_Renderer *renderer;
-
 int main() {
     printf("Initing the SDL_INTI SYSTEM...\n");
-    int score = 0; 
+    int score = 10; 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Init(SDL_INIT_VIDEO);
-
+    
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 	printf("Someting went wrong with SDL_INIT...\n"); 
         exit(EXIT_FAILURE);  
@@ -63,19 +63,18 @@ int main() {
 		   SDL_RENDERER_ACCELERATED 
 		   );
       
-    const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";  
+    const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";     	  
+  
     init_texture();
     openFont(fontPath);
+
+    init_texture2();
+    openFont2(fontPath);
+    
     SDL_Texture* Entexture = enermyTexture(renderer); 
     SDL_Texture* Playertexture = PlayerTexture(renderer);
     SDL_Texture* Mapping = mapTexture(renderer); 
-    SDL_Surface* foodSurface = SDL_LoadBMP("art/food.bmp");
-    SDL_Texture* foodTexture = SDL_CreateTextureFromSurface(renderer, foodSurface);
-    if (!foodSurface && !foodTexture) {
-        return -1;
-    }
-    SDL_FreeSurface(foodSurface);  
-
+    SDL_Texture* foodtexture = foodTexture(renderer); 
           
     Food food = CreateFood(300, 300, 50, 50); 
     Player player = Createplayer(100, 100, 50, 50); 
@@ -85,7 +84,7 @@ int main() {
      while (true) {
 	if (SDL_PollEvent(&event) < 0) {
 		if (event.type == SDL_QUIT)
-			break;
+		return -1; 	
 	}	
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
         if (currentKeyStates[SDL_SCANCODE_UP]) {
@@ -99,29 +98,36 @@ int main() {
         }
         if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
             playerMovement(&player, RIGHT, 0);
-        }
-        
-      if (checkCollision(&player, &food)) {
-           RandomFootPos(&food);  
-	    score++;
-      } 
-      updatePlayerToEnermy1(&enermy, &player);    
-      SDL_RenderClear(renderer);
-      SDL_RenderCopy(renderer, Mapping, NULL, NULL);	 
+	}
       
-      renderText(renderer, score); 
+      SDL_RenderClear(renderer);
+      SDL_RenderCopy(renderer, Mapping, NULL, NULL);	  
+            
+      renderText(renderer, score); 	        
+      if (checkCollisionEn(&player, &enermy) == 1) {
+     	      renderGameOver(renderer);
+	      score = 0; 
+     	      player.x = WIDTH / 2; 
+	      player.y = HEIGHT / 2; 
+      }
+
+      if (checkCollisionFood(&player, &food)) {
+            RandomFootPos(&food);  
+	    score++; 	     
+      }
+      updatePlayerToEnermy1(&enermy, &player);
       
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
       SDL_RenderCopy(renderer, Playertexture, NULL, &drawPlayer);
 
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
-      SDL_RenderCopy(renderer, foodTexture, NULL, &drawfood); 
+      SDL_RenderCopy(renderer, foodtexture, NULL, &drawfood); 
      
       SDL_Rect Enermy = {enermy.x, enermy.y, ENERMY_WIDTH, ENERMY_HEIGHT};
       SDL_RenderCopy(renderer, Entexture, NULL, &Enermy); 
      
       SDL_RenderPresent(renderer);
       SDL_Delay(16);
-     }  
+     }
     return 0;
 } 

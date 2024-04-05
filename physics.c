@@ -1,7 +1,7 @@
 #include "physics.h"
 #include "food.h" 
 #include "player.h" 
-#define DISTANCE_CONSTANT 800 
+#define DISTANCE_CONSTANT 200.f 
 void RandomFootPos(Food *food) {
      srand(time(0));
      int random_height = (rand() % 450);
@@ -10,11 +10,18 @@ void RandomFootPos(Food *food) {
      food->y = random_height;
 } 
 
-bool checkCollision(Player* player, Food* food) {
+bool checkCollisionFood(Player* player, Food* food) {
     return (player->x < food->x + food->width &&
             player->x + player->width > food->x &&
             player->y < food->y + food->height &&
             player->y + player->height > food->y);
+}
+
+bool checkCollisionEn(Player* player, Enermy* enermy) {
+    return (player->x < enermy->x + enermy->width &&
+            player->x + player->width > enermy->x &&
+            player->y < enermy->y + enermy->height &&
+            player->y + player->height > enermy->y);
 }
 
 void updatePlayerToEnermy1(Enermy* enermy, Player* player) {

@@ -8,6 +8,7 @@
 #include "Enermy.h"
 #include "food.h" 
 void RandomFootPos(Food *food); 
-bool checkCollision(Player* player, Food* food); 
+bool checkCollisionFood(Player* player, Food* food); 
+bool checkCollisionEn(Player* player, Enermy* enermy); 
 void updatePlayerToEnermy1(Enermy* enermy, Player* player);
 #endif 

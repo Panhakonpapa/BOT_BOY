@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "toml.h"
+#include <toml.h>
 #include <string.h>
 typedef struct {
 	const char* SoureFiles1;
@@ -8,7 +8,8 @@ typedef struct {
 	const char* SoureFiles3;
 	const char* SoureFiles4;
 	const char* SoureFiles5;	
-	const char* SoureFiles6;
+	const char* SoureFiles6;	
+	const char* SoureFiles7;	
 } Token;
 
 void Write_the_info(const char* source_files[], int file_arry_t) {
@@ -24,10 +25,10 @@ void NovaBuild_up(Token* Nova) {
 	const char* source_files[] = {
 		Nova->SoureFiles1,
 		Nova->SoureFiles2, 	
-		Nova->SoureFiles3, 								
-		Nova->SoureFiles4,
+		Nova->SoureFiles3, 								  Nova->SoureFiles4,
 		Nova->SoureFiles5, 
 		Nova->SoureFiles6, 
+		Nova->SoureFiles7, 		
 	}; 	
 	int file_arry_t = sizeof(source_files) / sizeof(source_files[0]);
 	
@@ -91,7 +92,8 @@ int main() {
 	Nova.SoureFiles3 = toml_raw_in(config, "file3");	
 	Nova.SoureFiles4 = toml_raw_in(config, "file4"); 			
 	Nova.SoureFiles5 = toml_raw_in(config, "file5");
-	Nova.SoureFiles6 = toml_raw_in(config, "file6"); 		
+	Nova.SoureFiles6 = toml_raw_in(config, "file6"); 			
+	Nova.SoureFiles7 = toml_raw_in(config, "file7"); 		
 	if (!Nova.SoureFiles1 && !Nova.SoureFiles2 && !Nova.SoureFiles3) {
 		printf("Error File %s", Nova.SoureFiles1);
 		return -1;
