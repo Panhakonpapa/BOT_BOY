@@ -1,0 +1,5 @@
+[] Adding new enermy 
+[] fixing GameOver screen 
+[] Rewamp the art style make it your own 
+[] Add music 
+
