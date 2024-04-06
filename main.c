@@ -13,22 +13,25 @@
 #include "physics.h"
 #include "gameover.h" 
 
-#define WIDTH 800
-#define HEIGHT 600
-#define WIDTH_SNAKE 50
-#define HEIGHT_SNAKE 50
-#define ENERMY_WIDTH 50 
-#define ENERMY_HEIGHT 50 
-#define ENERMY_SPEED 5
-#define DELAY 400
+#define WIDTH 800            /* Width of the window */
+#define HEIGHT 600           /* Height of the window */
+#define WIDTH_SNAKE 50       /* Width of the Player */
+#define HEIGHT_SNAKE 50      /* Height of the Player */
+#define ENERMY_WIDTH 50      /* Enermy Width */
+#define ENERMY_HEIGHT 50     /* Enermy Heigth */
+#define ENERMY_SPEED 5       /* Enermy Speed */
+#define DELAY 400	
+
+		             /* Speed of the Player */
 #define RIGHT 20 
 #define LEFT -20
 #define UP -20 
 #define DOWN 20
-#define DISTANCE_CONSTANT 200.0f
+
 
 SDL_Window *window;
 SDL_Renderer *renderer;
+
 int main() {
     printf("Initing the SDL_INTI SYSTEM...\n");
     int score = 10; 
@@ -42,7 +45,7 @@ int main() {
     
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     fprintf(stderr, "SDL could not initialize! SDL Error: %s\n", SDL_GetError());
-    exit(EXIT_FAILURE);  // Exit the program or handle the error accordingly
+    exit(EXIT_FAILURE); 
 }
 
     window = SDL_CreateWindow(
@@ -71,17 +74,17 @@ int main() {
     init_texture2();
     openFont2(fontPath);
     
-    SDL_Texture* Entexture = enermyTexture(renderer); 
-    SDL_Texture* Playertexture = PlayerTexture(renderer);
-    SDL_Texture* Mapping = mapTexture(renderer); 
-    SDL_Texture* foodtexture = foodTexture(renderer); 
-          
+    SDL_Texture* Entexture = enermyTexture(renderer); 	  /* Enermy Texture */
+    SDL_Texture* Playertexture = PlayerTexture(renderer); /* Player Texture */
+    SDL_Texture* Mapping = mapTexture(renderer);  	  /* Map texture */
+    SDL_Texture* foodtexture = foodTexture(renderer);     /* Food texture */          
+    
+    /* Objcet Creation */ 
     Food food = CreateFood(300, 300, 50, 50); 
     Player player = Createplayer(WIDTH / 2, HEIGHT / 2, 50, 50); 
     Enermy enermy = CreateEnermy(200, 200, 50, 50, 1);       
-    Enermy enermy2 = CreateEnermy(300, 400, 50, 50, 1);  
-    SDL_Event event;
-
+ 
+    SDL_Event event; /* SDL get event */
      while (true) {
 	     while (SDL_PollEvent(&event)) {
 			switch (event.key.keysym.sym) {
@@ -102,6 +105,9 @@ int main() {
 					break; 	
 		}	
 	} 
+
+
+      /* Update and Clear Screen */
       SDL_RenderClear(renderer);
       SDL_RenderCopy(renderer, Mapping, NULL, NULL);	  
             
@@ -118,20 +124,21 @@ int main() {
             RandomFootPos(&food);  
 	    score++; 	     
       }
-      updatePlayerToEnermy1(&enermy, &player);      
-      updatePlayerToEnermy1(&enermy2, &player);
       
+      /* Enermy AI that move to Playler */ 
+      updatePlayerToEnermy1(&enermy, &player);      
+    
+      /* Draw Player on the map */
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
       SDL_RenderCopy(renderer, Playertexture, NULL, &drawPlayer);
-
+      
+      /* Draw Player on the map */ 
       SDL_Rect drawfood = {food.x, food.y, food.width, food.height};
       SDL_RenderCopy(renderer, foodtexture, NULL, &drawfood); 
-     
+
+      /* Draw Enermy on the map */
       SDL_Rect Enermy = {enermy.x, enermy.y, ENERMY_WIDTH, ENERMY_HEIGHT};
       SDL_RenderCopy(renderer, Entexture, NULL, &Enermy); 
-
-      SDL_Rect Enermy2 = {enermy2.x, enermy2.y, ENERMY_WIDTH, ENERMY_HEIGHT};
-      SDL_RenderCopy(renderer, Entexture, NULL, &Enermy2); 
       
       SDL_RenderPresent(renderer);
       SDL_Delay(16);
