@@ -1,0 +1,1192 @@
+
+nova:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000001000 <_init>:
+    1000:	f3 0f 1e fa          	endbr64
+    1004:	48 83 ec 08          	sub    $0x8,%rsp
+    1008:	48 8b 05 b1 3f 00 00 	mov    0x3fb1(%rip),%rax        # 4fc0 <__gmon_start__@Base>
+    100f:	48 85 c0             	test   %rax,%rax
+    1012:	74 02                	je     1016 <_init+0x16>
+    1014:	ff d0                	call   *%rax
+    1016:	48 83 c4 08          	add    $0x8,%rsp
+    101a:	c3                   	ret
+
+Disassembly of section .plt:
+
+0000000000001020 <SDL_FreeSurface@plt-0x10>:
+    1020:	ff 35 ca 3f 00 00    	push   0x3fca(%rip)        # 4ff0 <_GLOBAL_OFFSET_TABLE_+0x8>
+    1026:	ff 25 cc 3f 00 00    	jmp    *0x3fcc(%rip)        # 4ff8 <_GLOBAL_OFFSET_TABLE_+0x10>
+    102c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000001030 <SDL_FreeSurface@plt>:
+    1030:	ff 25 ca 3f 00 00    	jmp    *0x3fca(%rip)        # 5000 <SDL_FreeSurface@Base>
+    1036:	68 00 00 00 00       	push   $0x0
+    103b:	e9 e0 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001040 <puts@plt>:
+    1040:	ff 25 c2 3f 00 00    	jmp    *0x3fc2(%rip)        # 5008 <puts@GLIBC_2.2.5>
+    1046:	68 01 00 00 00       	push   $0x1
+    104b:	e9 d0 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001050 <exit@plt>:
+    1050:	ff 25 ba 3f 00 00    	jmp    *0x3fba(%rip)        # 5010 <exit@GLIBC_2.2.5>
+    1056:	68 02 00 00 00       	push   $0x2
+    105b:	e9 c0 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001060 <SDL_RenderClear@plt>:
+    1060:	ff 25 b2 3f 00 00    	jmp    *0x3fb2(%rip)        # 5018 <SDL_RenderClear@Base>
+    1066:	68 03 00 00 00       	push   $0x3
+    106b:	e9 b0 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001070 <TTF_Init@plt>:
+    1070:	ff 25 aa 3f 00 00    	jmp    *0x3faa(%rip)        # 5020 <TTF_Init@Base>
+    1076:	68 04 00 00 00       	push   $0x4
+    107b:	e9 a0 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001080 <SDL_RWFromFile@plt>:
+    1080:	ff 25 a2 3f 00 00    	jmp    *0x3fa2(%rip)        # 5028 <SDL_RWFromFile@Base>
+    1086:	68 05 00 00 00       	push   $0x5
+    108b:	e9 90 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001090 <SDL_PollEvent@plt>:
+    1090:	ff 25 9a 3f 00 00    	jmp    *0x3f9a(%rip)        # 5030 <SDL_PollEvent@Base>
+    1096:	68 06 00 00 00       	push   $0x6
+    109b:	e9 80 ff ff ff       	jmp    1020 <_init+0x20>
+
+00000000000010a0 <SDL_GetKeyboardState@plt>:
+    10a0:	ff 25 92 3f 00 00    	jmp    *0x3f92(%rip)        # 5038 <SDL_GetKeyboardState@Base>
+    10a6:	68 07 00 00 00       	push   $0x7
+    10ab:	e9 70 ff ff ff       	jmp    1020 <_init+0x20>
+
+00000000000010b0 <SDL_CreateTextureFromSurface@plt>:
+    10b0:	ff 25 8a 3f 00 00    	jmp    *0x3f8a(%rip)        # 5040 <SDL_CreateTextureFromSurface@Base>
+    10b6:	68 08 00 00 00       	push   $0x8
+    10bb:	e9 60 ff ff ff       	jmp    1020 <_init+0x20>
+
+00000000000010c0 <SDL_RenderPresent@plt>:
+    10c0:	ff 25 82 3f 00 00    	jmp    *0x3f82(%rip)        # 5048 <SDL_RenderPresent@Base>
+    10c6:	68 09 00 00 00       	push   $0x9
+    10cb:	e9 50 ff ff ff       	jmp    1020 <_init+0x20>
+
+00000000000010d0 <SDL_CreateWindow@plt>:
+    10d0:	ff 25 7a 3f 00 00    	jmp    *0x3f7a(%rip)        # 5050 <SDL_CreateWindow@Base>
+    10d6:	68 0a 00 00 00       	push   $0xa
+    10db:	e9 40 ff ff ff       	jmp    1020 <_init+0x20>
+
+00000000000010e0 <SDL_Init@plt>:
+    10e0:	ff 25 72 3f 00 00    	jmp    *0x3f72(%rip)        # 5058 <SDL_Init@Base>
+    10e6:	68 0b 00 00 00       	push   $0xb
+    10eb:	e9 30 ff ff ff       	jmp    1020 <_init+0x20>
+
+00000000000010f0 <sprintf@plt>:
+    10f0:	ff 25 6a 3f 00 00    	jmp    *0x3f6a(%rip)        # 5060 <sprintf@GLIBC_2.2.5>
+    10f6:	68 0c 00 00 00       	push   $0xc
+    10fb:	e9 20 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001100 <SDL_CreateRenderer@plt>:
+    1100:	ff 25 62 3f 00 00    	jmp    *0x3f62(%rip)        # 5068 <SDL_CreateRenderer@Base>
+    1106:	68 0d 00 00 00       	push   $0xd
+    110b:	e9 10 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001110 <SDL_RenderCopy@plt>:
+    1110:	ff 25 5a 3f 00 00    	jmp    *0x3f5a(%rip)        # 5070 <SDL_RenderCopy@Base>
+    1116:	68 0e 00 00 00       	push   $0xe
+    111b:	e9 00 ff ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001120 <TTF_OpenFont@plt>:
+    1120:	ff 25 52 3f 00 00    	jmp    *0x3f52(%rip)        # 5078 <TTF_OpenFont@Base>
+    1126:	68 0f 00 00 00       	push   $0xf
+    112b:	e9 f0 fe ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001130 <TTF_RenderText_Shaded@plt>:
+    1130:	ff 25 4a 3f 00 00    	jmp    *0x3f4a(%rip)        # 5080 <TTF_RenderText_Shaded@Base>
+    1136:	68 10 00 00 00       	push   $0x10
+    113b:	e9 e0 fe ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001140 <__stack_chk_fail@plt>:
+    1140:	ff 25 42 3f 00 00    	jmp    *0x3f42(%rip)        # 5088 <__stack_chk_fail@GLIBC_2.4>
+    1146:	68 11 00 00 00       	push   $0x11
+    114b:	e9 d0 fe ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001150 <srand@plt>:
+    1150:	ff 25 3a 3f 00 00    	jmp    *0x3f3a(%rip)        # 5090 <srand@GLIBC_2.2.5>
+    1156:	68 12 00 00 00       	push   $0x12
+    115b:	e9 c0 fe ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001160 <SDL_LoadBMP_RW@plt>:
+    1160:	ff 25 32 3f 00 00    	jmp    *0x3f32(%rip)        # 5098 <SDL_LoadBMP_RW@Base>
+    1166:	68 13 00 00 00       	push   $0x13
+    116b:	e9 b0 fe ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001170 <SDL_Delay@plt>:
+    1170:	ff 25 2a 3f 00 00    	jmp    *0x3f2a(%rip)        # 50a0 <SDL_Delay@Base>
+    1176:	68 14 00 00 00       	push   $0x14
+    117b:	e9 a0 fe ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001180 <SDL_GetError@plt>:
+    1180:	ff 25 22 3f 00 00    	jmp    *0x3f22(%rip)        # 50a8 <SDL_GetError@Base>
+    1186:	68 15 00 00 00       	push   $0x15
+    118b:	e9 90 fe ff ff       	jmp    1020 <_init+0x20>
+
+0000000000001190 <perror@plt>:
+    1190:	ff 25 1a 3f 00 00    	jmp    *0x3f1a(%rip)        # 50b0 <perror@GLIBC_2.2.5>
+    1196:	68 16 00 00 00       	push   $0x16
+    119b:	e9 80 fe ff ff       	jmp    1020 <_init+0x20>
+
+00000000000011a0 <rand@plt>:
+    11a0:	ff 25 12 3f 00 00    	jmp    *0x3f12(%rip)        # 50b8 <rand@GLIBC_2.2.5>
+    11a6:	68 17 00 00 00       	push   $0x17
+    11ab:	e9 70 fe ff ff       	jmp    1020 <_init+0x20>
+
+00000000000011b0 <fprintf@plt>:
+    11b0:	ff 25 0a 3f 00 00    	jmp    *0x3f0a(%rip)        # 50c0 <fprintf@GLIBC_2.2.5>
+    11b6:	68 18 00 00 00       	push   $0x18
+    11bb:	e9 60 fe ff ff       	jmp    1020 <_init+0x20>
+
+00000000000011c0 <sqrt@plt>:
+    11c0:	ff 25 02 3f 00 00    	jmp    *0x3f02(%rip)        # 50c8 <sqrt@GLIBC_2.2.5>
+    11c6:	68 19 00 00 00       	push   $0x19
+    11cb:	e9 50 fe ff ff       	jmp    1020 <_init+0x20>
+
+00000000000011d0 <time@plt>:
+    11d0:	ff 25 fa 3e 00 00    	jmp    *0x3efa(%rip)        # 50d0 <time@GLIBC_2.2.5>
+    11d6:	68 1a 00 00 00       	push   $0x1a
+    11db:	e9 40 fe ff ff       	jmp    1020 <_init+0x20>
+
+Disassembly of section .text:
+
+00000000000011e0 <_start>:
+    11e0:	f3 0f 1e fa          	endbr64
+    11e4:	31 ed                	xor    %ebp,%ebp
+    11e6:	49 89 d1             	mov    %rdx,%r9
+    11e9:	5e                   	pop    %rsi
+    11ea:	48 89 e2             	mov    %rsp,%rdx
+    11ed:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+    11f1:	50                   	push   %rax
+    11f2:	54                   	push   %rsp
+    11f3:	45 31 c0             	xor    %r8d,%r8d
+    11f6:	31 c9                	xor    %ecx,%ecx
+    11f8:	48 8d 3d da 00 00 00 	lea    0xda(%rip),%rdi        # 12d9 <main>
+    11ff:	ff 15 db 3d 00 00    	call   *0x3ddb(%rip)        # 4fe0 <__libc_start_main@GLIBC_2.34>
+    1205:	f4                   	hlt
+    1206:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+    120d:	00 00 00 
+    1210:	48 8d 3d f1 3e 00 00 	lea    0x3ef1(%rip),%rdi        # 5108 <__TMC_END__>
+    1217:	48 8d 05 ea 3e 00 00 	lea    0x3eea(%rip),%rax        # 5108 <__TMC_END__>
+    121e:	48 39 f8             	cmp    %rdi,%rax
+    1221:	74 15                	je     1238 <_start+0x58>
+    1223:	48 8b 05 9e 3d 00 00 	mov    0x3d9e(%rip),%rax        # 4fc8 <_ITM_deregisterTMCloneTable@Base>
+    122a:	48 85 c0             	test   %rax,%rax
+    122d:	74 09                	je     1238 <_start+0x58>
+    122f:	ff e0                	jmp    *%rax
+    1231:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    1238:	c3                   	ret
+    1239:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    1240:	48 8d 3d c1 3e 00 00 	lea    0x3ec1(%rip),%rdi        # 5108 <__TMC_END__>
+    1247:	48 8d 35 ba 3e 00 00 	lea    0x3eba(%rip),%rsi        # 5108 <__TMC_END__>
+    124e:	48 29 fe             	sub    %rdi,%rsi
+    1251:	48 89 f0             	mov    %rsi,%rax
+    1254:	48 c1 ee 3f          	shr    $0x3f,%rsi
+    1258:	48 c1 f8 03          	sar    $0x3,%rax
+    125c:	48 01 c6             	add    %rax,%rsi
+    125f:	48 d1 fe             	sar    $1,%rsi
+    1262:	74 14                	je     1278 <_start+0x98>
+    1264:	48 8b 05 65 3d 00 00 	mov    0x3d65(%rip),%rax        # 4fd0 <_ITM_registerTMCloneTable@Base>
+    126b:	48 85 c0             	test   %rax,%rax
+    126e:	74 08                	je     1278 <_start+0x98>
+    1270:	ff e0                	jmp    *%rax
+    1272:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+    1278:	c3                   	ret
+    1279:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    1280:	f3 0f 1e fa          	endbr64
+    1284:	80 3d 9d 3e 00 00 00 	cmpb   $0x0,0x3e9d(%rip)        # 5128 <stderr@GLIBC_2.2.5+0x8>
+    128b:	75 33                	jne    12c0 <_start+0xe0>
+    128d:	55                   	push   %rbp
+    128e:	48 83 3d 42 3d 00 00 	cmpq   $0x0,0x3d42(%rip)        # 4fd8 <__cxa_finalize@GLIBC_2.2.5>
+    1295:	00 
+    1296:	48 89 e5             	mov    %rsp,%rbp
+    1299:	74 0d                	je     12a8 <_start+0xc8>
+    129b:	48 8b 3d 3e 3e 00 00 	mov    0x3e3e(%rip),%rdi        # 50e0 <__dso_handle>
+    12a2:	ff 15 30 3d 00 00    	call   *0x3d30(%rip)        # 4fd8 <__cxa_finalize@GLIBC_2.2.5>
+    12a8:	e8 63 ff ff ff       	call   1210 <_start+0x30>
+    12ad:	c6 05 74 3e 00 00 01 	movb   $0x1,0x3e74(%rip)        # 5128 <stderr@GLIBC_2.2.5+0x8>
+    12b4:	5d                   	pop    %rbp
+    12b5:	c3                   	ret
+    12b6:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+    12bd:	00 00 00 
+    12c0:	c3                   	ret
+    12c1:	66 66 2e 0f 1f 84 00 	data16 cs nopw 0x0(%rax,%rax,1)
+    12c8:	00 00 00 00 
+    12cc:	0f 1f 40 00          	nopl   0x0(%rax)
+    12d0:	f3 0f 1e fa          	endbr64
+    12d4:	e9 67 ff ff ff       	jmp    1240 <_start+0x60>
+
+00000000000012d9 <main>:
+    12d9:	55                   	push   %rbp
+    12da:	48 89 e5             	mov    %rsp,%rbp
+    12dd:	48 81 ec 20 01 00 00 	sub    $0x120,%rsp
+    12e4:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    12eb:	00 00 
+    12ed:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    12f1:	31 c0                	xor    %eax,%eax
+    12f3:	48 8d 05 0e 1d 00 00 	lea    0x1d0e(%rip),%rax        # 3008 <_IO_stdin_used+0x8>
+    12fa:	48 89 c7             	mov    %rax,%rdi
+    12fd:	e8 3e fd ff ff       	call   1040 <puts@plt>
+    1302:	c7 85 ec fe ff ff 0a 	movl   $0xa,-0x114(%rbp)
+    1309:	00 00 00 
+    130c:	bf 31 f2 00 00       	mov    $0xf231,%edi
+    1311:	e8 ca fd ff ff       	call   10e0 <SDL_Init@plt>
+    1316:	bf 20 00 00 00       	mov    $0x20,%edi
+    131b:	e8 c0 fd ff ff       	call   10e0 <SDL_Init@plt>
+    1320:	bf 31 f2 00 00       	mov    $0xf231,%edi
+    1325:	e8 b6 fd ff ff       	call   10e0 <SDL_Init@plt>
+    132a:	85 c0                	test   %eax,%eax
+    132c:	79 19                	jns    1347 <main+0x6e>
+    132e:	48 8d 05 f3 1c 00 00 	lea    0x1cf3(%rip),%rax        # 3028 <_IO_stdin_used+0x28>
+    1335:	48 89 c7             	mov    %rax,%rdi
+    1338:	e8 03 fd ff ff       	call   1040 <puts@plt>
+    133d:	bf 01 00 00 00       	mov    $0x1,%edi
+    1342:	e8 09 fd ff ff       	call   1050 <exit@plt>
+    1347:	bf 20 00 00 00       	mov    $0x20,%edi
+    134c:	e8 8f fd ff ff       	call   10e0 <SDL_Init@plt>
+    1351:	85 c0                	test   %eax,%eax
+    1353:	79 30                	jns    1385 <main+0xac>
+    1355:	e8 26 fe ff ff       	call   1180 <SDL_GetError@plt>
+    135a:	48 89 c2             	mov    %rax,%rdx
+    135d:	48 8b 05 bc 3d 00 00 	mov    0x3dbc(%rip),%rax        # 5120 <stderr@GLIBC_2.2.5>
+    1364:	48 8d 0d e5 1c 00 00 	lea    0x1ce5(%rip),%rcx        # 3050 <_IO_stdin_used+0x50>
+    136b:	48 89 ce             	mov    %rcx,%rsi
+    136e:	48 89 c7             	mov    %rax,%rdi
+    1371:	b8 00 00 00 00       	mov    $0x0,%eax
+    1376:	e8 35 fe ff ff       	call   11b0 <fprintf@plt>
+    137b:	bf 01 00 00 00       	mov    $0x1,%edi
+    1380:	e8 cb fc ff ff       	call   1050 <exit@plt>
+    1385:	41 b9 00 00 00 00    	mov    $0x0,%r9d
+    138b:	41 b8 58 02 00 00    	mov    $0x258,%r8d
+    1391:	b9 20 03 00 00       	mov    $0x320,%ecx
+    1396:	ba 00 00 ff 1f       	mov    $0x1fff0000,%edx
+    139b:	be 00 00 ff 1f       	mov    $0x1fff0000,%esi
+    13a0:	48 8d 05 d2 1c 00 00 	lea    0x1cd2(%rip),%rax        # 3079 <_IO_stdin_used+0x79>
+    13a7:	48 89 c7             	mov    %rax,%rdi
+    13aa:	e8 21 fd ff ff       	call   10d0 <SDL_CreateWindow@plt>
+    13af:	48 89 05 7a 3d 00 00 	mov    %rax,0x3d7a(%rip)        # 5130 <window>
+    13b6:	48 8b 05 73 3d 00 00 	mov    0x3d73(%rip),%rax        # 5130 <window>
+    13bd:	48 85 c0             	test   %rax,%rax
+    13c0:	75 0f                	jne    13d1 <main+0xf8>
+    13c2:	48 8d 05 b8 1c 00 00 	lea    0x1cb8(%rip),%rax        # 3081 <_IO_stdin_used+0x81>
+    13c9:	48 89 c7             	mov    %rax,%rdi
+    13cc:	e8 6f fc ff ff       	call   1040 <puts@plt>
+    13d1:	48 8b 05 58 3d 00 00 	mov    0x3d58(%rip),%rax        # 5130 <window>
+    13d8:	ba 02 00 00 00       	mov    $0x2,%edx
+    13dd:	be ff ff ff ff       	mov    $0xffffffff,%esi
+    13e2:	48 89 c7             	mov    %rax,%rdi
+    13e5:	e8 16 fd ff ff       	call   1100 <SDL_CreateRenderer@plt>
+    13ea:	48 89 05 47 3d 00 00 	mov    %rax,0x3d47(%rip)        # 5138 <renderer>
+    13f1:	48 8d 05 a8 1c 00 00 	lea    0x1ca8(%rip),%rax        # 30a0 <_IO_stdin_used+0xa0>
+    13f8:	48 89 85 f0 fe ff ff 	mov    %rax,-0x110(%rbp)
+    13ff:	b8 00 00 00 00       	mov    $0x0,%eax
+    1404:	e8 51 06 00 00       	call   1a5a <init_texture>
+    1409:	48 8b 85 f0 fe ff ff 	mov    -0x110(%rbp),%rax
+    1410:	48 89 c7             	mov    %rax,%rdi
+    1413:	e8 00 06 00 00       	call   1a18 <openFont>
+    1418:	b8 00 00 00 00       	mov    $0x0,%eax
+    141d:	e8 e2 0b 00 00       	call   2004 <init_texture2>
+    1422:	48 8b 85 f0 fe ff ff 	mov    -0x110(%rbp),%rax
+    1429:	48 89 c7             	mov    %rax,%rdi
+    142c:	e8 91 0b 00 00       	call   1fc2 <openFont2>
+    1431:	48 8b 05 00 3d 00 00 	mov    0x3d00(%rip),%rax        # 5138 <renderer>
+    1438:	48 89 c7             	mov    %rax,%rdi
+    143b:	e8 12 0b 00 00       	call   1f52 <enermyTexture>
+    1440:	48 89 85 f8 fe ff ff 	mov    %rax,-0x108(%rbp)
+    1447:	48 8b 05 ea 3c 00 00 	mov    0x3cea(%rip),%rax        # 5138 <renderer>
+    144e:	48 89 c7             	mov    %rax,%rdi
+    1451:	e8 98 04 00 00       	call   18ee <PlayerTexture>
+    1456:	48 89 85 00 ff ff ff 	mov    %rax,-0x100(%rbp)
+    145d:	48 8b 05 d4 3c 00 00 	mov    0x3cd4(%rip),%rax        # 5138 <renderer>
+    1464:	48 89 c7             	mov    %rax,%rdi
+    1467:	e8 08 05 00 00       	call   1974 <mapTexture>
+    146c:	48 89 85 08 ff ff ff 	mov    %rax,-0xf8(%rbp)
+    1473:	48 8b 05 be 3c 00 00 	mov    0x3cbe(%rip),%rax        # 5138 <renderer>
+    147a:	48 89 c7             	mov    %rax,%rdi
+    147d:	e8 0a 0a 00 00       	call   1e8c <foodTexture>
+    1482:	48 89 85 10 ff ff ff 	mov    %rax,-0xf0(%rbp)
+    1489:	b9 32 00 00 00       	mov    $0x32,%ecx
+    148e:	ba 32 00 00 00       	mov    $0x32,%edx
+    1493:	be 2c 01 00 00       	mov    $0x12c,%esi
+    1498:	bf 2c 01 00 00       	mov    $0x12c,%edi
+    149d:	e8 b8 09 00 00       	call   1e5a <CreateFood>
+    14a2:	48 89 85 20 ff ff ff 	mov    %rax,-0xe0(%rbp)
+    14a9:	48 89 95 28 ff ff ff 	mov    %rdx,-0xd8(%rbp)
+    14b0:	b9 32 00 00 00       	mov    $0x32,%ecx
+    14b5:	ba 32 00 00 00       	mov    $0x32,%edx
+    14ba:	be 2c 01 00 00       	mov    $0x12c,%esi
+    14bf:	bf 90 01 00 00       	mov    $0x190,%edi
+    14c4:	e8 f3 03 00 00       	call   18bc <Createplayer>
+    14c9:	48 89 85 30 ff ff ff 	mov    %rax,-0xd0(%rbp)
+    14d0:	48 89 95 38 ff ff ff 	mov    %rdx,-0xc8(%rbp)
+    14d7:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+    14db:	41 b9 01 00 00 00    	mov    $0x1,%r9d
+    14e1:	41 b8 32 00 00 00    	mov    $0x32,%r8d
+    14e7:	b9 32 00 00 00       	mov    $0x32,%ecx
+    14ec:	ba c8 00 00 00       	mov    $0xc8,%edx
+    14f1:	be c8 00 00 00       	mov    $0xc8,%esi
+    14f6:	48 89 c7             	mov    %rax,%rdi
+    14f9:	e8 fe 09 00 00       	call   1efc <CreateEnermy>
+    14fe:	48 8d 45 a0          	lea    -0x60(%rbp),%rax
+    1502:	41 b9 01 00 00 00    	mov    $0x1,%r9d
+    1508:	41 b8 32 00 00 00    	mov    $0x32,%r8d
+    150e:	b9 32 00 00 00       	mov    $0x32,%ecx
+    1513:	ba 90 01 00 00       	mov    $0x190,%edx
+    1518:	be 2c 01 00 00       	mov    $0x12c,%esi
+    151d:	48 89 c7             	mov    %rax,%rdi
+    1520:	e8 d7 09 00 00       	call   1efc <CreateEnermy>
+    1525:	48 8d 45 c0          	lea    -0x40(%rbp),%rax
+    1529:	48 89 c7             	mov    %rax,%rdi
+    152c:	e8 5f fb ff ff       	call   1090 <SDL_PollEvent@plt>
+    1531:	85 c0                	test   %eax,%eax
+    1533:	0f 89 e4 00 00 00    	jns    161d <main+0x344>
+    1539:	8b 45 c0             	mov    -0x40(%rbp),%eax
+    153c:	3d 00 01 00 00       	cmp    $0x100,%eax
+    1541:	75 1d                	jne    1560 <main+0x287>
+    1543:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+    1548:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    154c:	64 48 2b 14 25 28 00 	sub    %fs:0x28,%rdx
+    1553:	00 00 
+    1555:	0f 84 2a 03 00 00    	je     1885 <main+0x5ac>
+    155b:	e9 20 03 00 00       	jmp    1880 <main+0x5a7>
+    1560:	bf 00 00 00 00       	mov    $0x0,%edi
+    1565:	e8 36 fb ff ff       	call   10a0 <SDL_GetKeyboardState@plt>
+    156a:	48 89 85 18 ff ff ff 	mov    %rax,-0xe8(%rbp)
+    1571:	48 8b 85 18 ff ff ff 	mov    -0xe8(%rbp),%rax
+    1578:	48 83 c0 52          	add    $0x52,%rax
+    157c:	0f b6 00             	movzbl (%rax),%eax
+    157f:	84 c0                	test   %al,%al
+    1581:	74 19                	je     159c <main+0x2c3>
+    1583:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    158a:	ba ec ff ff ff       	mov    $0xffffffec,%edx
+    158f:	be 00 00 00 00       	mov    $0x0,%esi
+    1594:	48 89 c7             	mov    %rax,%rdi
+    1597:	e8 eb 02 00 00       	call   1887 <playerMovement>
+    159c:	48 8b 85 18 ff ff ff 	mov    -0xe8(%rbp),%rax
+    15a3:	48 83 c0 51          	add    $0x51,%rax
+    15a7:	0f b6 00             	movzbl (%rax),%eax
+    15aa:	84 c0                	test   %al,%al
+    15ac:	74 19                	je     15c7 <main+0x2ee>
+    15ae:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    15b5:	ba 14 00 00 00       	mov    $0x14,%edx
+    15ba:	be 00 00 00 00       	mov    $0x0,%esi
+    15bf:	48 89 c7             	mov    %rax,%rdi
+    15c2:	e8 c0 02 00 00       	call   1887 <playerMovement>
+    15c7:	48 8b 85 18 ff ff ff 	mov    -0xe8(%rbp),%rax
+    15ce:	48 83 c0 50          	add    $0x50,%rax
+    15d2:	0f b6 00             	movzbl (%rax),%eax
+    15d5:	84 c0                	test   %al,%al
+    15d7:	74 19                	je     15f2 <main+0x319>
+    15d9:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    15e0:	ba 00 00 00 00       	mov    $0x0,%edx
+    15e5:	be ec ff ff ff       	mov    $0xffffffec,%esi
+    15ea:	48 89 c7             	mov    %rax,%rdi
+    15ed:	e8 95 02 00 00       	call   1887 <playerMovement>
+    15f2:	48 8b 85 18 ff ff ff 	mov    -0xe8(%rbp),%rax
+    15f9:	48 83 c0 4f          	add    $0x4f,%rax
+    15fd:	0f b6 00             	movzbl (%rax),%eax
+    1600:	84 c0                	test   %al,%al
+    1602:	74 19                	je     161d <main+0x344>
+    1604:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    160b:	ba 00 00 00 00       	mov    $0x0,%edx
+    1610:	be 14 00 00 00       	mov    $0x14,%esi
+    1615:	48 89 c7             	mov    %rax,%rdi
+    1618:	e8 6a 02 00 00       	call   1887 <playerMovement>
+    161d:	48 8b 05 14 3b 00 00 	mov    0x3b14(%rip),%rax        # 5138 <renderer>
+    1624:	48 89 c7             	mov    %rax,%rdi
+    1627:	e8 34 fa ff ff       	call   1060 <SDL_RenderClear@plt>
+    162c:	48 8b 05 05 3b 00 00 	mov    0x3b05(%rip),%rax        # 5138 <renderer>
+    1633:	48 8b b5 08 ff ff ff 	mov    -0xf8(%rbp),%rsi
+    163a:	b9 00 00 00 00       	mov    $0x0,%ecx
+    163f:	ba 00 00 00 00       	mov    $0x0,%edx
+    1644:	48 89 c7             	mov    %rax,%rdi
+    1647:	e8 c4 fa ff ff       	call   1110 <SDL_RenderCopy@plt>
+    164c:	48 8b 05 e5 3a 00 00 	mov    0x3ae5(%rip),%rax        # 5138 <renderer>
+    1653:	8b 95 ec fe ff ff    	mov    -0x114(%rbp),%edx
+    1659:	89 d6                	mov    %edx,%esi
+    165b:	48 89 c7             	mov    %rax,%rdi
+    165e:	e8 37 04 00 00       	call   1a9a <renderText>
+    1663:	48 8d 55 80          	lea    -0x80(%rbp),%rdx
+    1667:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    166e:	48 89 d6             	mov    %rdx,%rsi
+    1671:	48 89 c7             	mov    %rax,%rdi
+    1674:	e8 46 06 00 00       	call   1cbf <checkCollisionEn>
+    1679:	84 c0                	test   %al,%al
+    167b:	74 46                	je     16c3 <main+0x3ea>
+    167d:	48 8b 05 b4 3a 00 00 	mov    0x3ab4(%rip),%rax        # 5138 <renderer>
+    1684:	48 89 c7             	mov    %rax,%rdi
+    1687:	e8 d4 f9 ff ff       	call   1060 <SDL_RenderClear@plt>
+    168c:	c7 85 ec fe ff ff 00 	movl   $0x0,-0x114(%rbp)
+    1693:	00 00 00 
+    1696:	c7 85 30 ff ff ff 90 	movl   $0x190,-0xd0(%rbp)
+    169d:	01 00 00 
+    16a0:	c7 85 34 ff ff ff 2c 	movl   $0x12c,-0xcc(%rbp)
+    16a7:	01 00 00 
+    16aa:	48 8b 05 87 3a 00 00 	mov    0x3a87(%rip),%rax        # 5138 <renderer>
+    16b1:	48 89 c7             	mov    %rax,%rdi
+    16b4:	e8 8b 09 00 00       	call   2044 <renderGameOver>
+    16b9:	bf 1e 00 00 00       	mov    $0x1e,%edi
+    16be:	e8 ad fa ff ff       	call   1170 <SDL_Delay@plt>
+    16c3:	48 8d 95 20 ff ff ff 	lea    -0xe0(%rbp),%rdx
+    16ca:	48 8d 85 30 ff ff ff 	lea    -0xd0(%rbp),%rax
+    16d1:	48 89 d6             	mov    %rdx,%rsi
+    16d4:	48 89 c7             	mov    %rax,%rdi
+    16d7:	e8 5e 05 00 00       	call   1c3a <checkCollisionFood>
+    16dc:	84 c0                	test   %al,%al
+    16de:	74 16                	je     16f6 <main+0x41d>
+    16e0:	48 8d 85 20 ff ff ff 	lea    -0xe0(%rbp),%rax
+    16e7:	48 89 c7             	mov    %rax,%rdi
+    16ea:	e8 b8 04 00 00       	call   1ba7 <RandomFootPos>
+    16ef:	83 85 ec fe ff ff 01 	addl   $0x1,-0x114(%rbp)
+    16f6:	48 8d 95 30 ff ff ff 	lea    -0xd0(%rbp),%rdx
+    16fd:	48 8d 45 80          	lea    -0x80(%rbp),%rax
+    1701:	48 89 d6             	mov    %rdx,%rsi
+    1704:	48 89 c7             	mov    %rax,%rdi
+    1707:	e8 38 06 00 00       	call   1d44 <updatePlayerToEnermy1>
+    170c:	48 8d 95 30 ff ff ff 	lea    -0xd0(%rbp),%rdx
+    1713:	48 8d 45 a0          	lea    -0x60(%rbp),%rax
+    1717:	48 89 d6             	mov    %rdx,%rsi
+    171a:	48 89 c7             	mov    %rax,%rdi
+    171d:	e8 22 06 00 00       	call   1d44 <updatePlayerToEnermy1>
+    1722:	8b 85 30 ff ff ff    	mov    -0xd0(%rbp),%eax
+    1728:	89 85 40 ff ff ff    	mov    %eax,-0xc0(%rbp)
+    172e:	8b 85 34 ff ff ff    	mov    -0xcc(%rbp),%eax
+    1734:	89 85 44 ff ff ff    	mov    %eax,-0xbc(%rbp)
+    173a:	8b 85 38 ff ff ff    	mov    -0xc8(%rbp),%eax
+    1740:	89 85 48 ff ff ff    	mov    %eax,-0xb8(%rbp)
+    1746:	8b 85 3c ff ff ff    	mov    -0xc4(%rbp),%eax
+    174c:	89 85 4c ff ff ff    	mov    %eax,-0xb4(%rbp)
+    1752:	48 8b 05 df 39 00 00 	mov    0x39df(%rip),%rax        # 5138 <renderer>
+    1759:	48 8d 95 40 ff ff ff 	lea    -0xc0(%rbp),%rdx
+    1760:	48 8b b5 00 ff ff ff 	mov    -0x100(%rbp),%rsi
+    1767:	48 89 d1             	mov    %rdx,%rcx
+    176a:	ba 00 00 00 00       	mov    $0x0,%edx
+    176f:	48 89 c7             	mov    %rax,%rdi
+    1772:	e8 99 f9 ff ff       	call   1110 <SDL_RenderCopy@plt>
+    1777:	8b 85 20 ff ff ff    	mov    -0xe0(%rbp),%eax
+    177d:	89 85 50 ff ff ff    	mov    %eax,-0xb0(%rbp)
+    1783:	8b 85 24 ff ff ff    	mov    -0xdc(%rbp),%eax
+    1789:	89 85 54 ff ff ff    	mov    %eax,-0xac(%rbp)
+    178f:	8b 85 28 ff ff ff    	mov    -0xd8(%rbp),%eax
+    1795:	89 85 58 ff ff ff    	mov    %eax,-0xa8(%rbp)
+    179b:	8b 85 2c ff ff ff    	mov    -0xd4(%rbp),%eax
+    17a1:	89 85 5c ff ff ff    	mov    %eax,-0xa4(%rbp)
+    17a7:	48 8b 05 8a 39 00 00 	mov    0x398a(%rip),%rax        # 5138 <renderer>
+    17ae:	48 8d 95 50 ff ff ff 	lea    -0xb0(%rbp),%rdx
+    17b5:	48 8b b5 10 ff ff ff 	mov    -0xf0(%rbp),%rsi
+    17bc:	48 89 d1             	mov    %rdx,%rcx
+    17bf:	ba 00 00 00 00       	mov    $0x0,%edx
+    17c4:	48 89 c7             	mov    %rax,%rdi
+    17c7:	e8 44 f9 ff ff       	call   1110 <SDL_RenderCopy@plt>
+    17cc:	8b 45 80             	mov    -0x80(%rbp),%eax
+    17cf:	89 85 60 ff ff ff    	mov    %eax,-0xa0(%rbp)
+    17d5:	8b 45 84             	mov    -0x7c(%rbp),%eax
+    17d8:	89 85 64 ff ff ff    	mov    %eax,-0x9c(%rbp)
+    17de:	c7 85 68 ff ff ff 32 	movl   $0x32,-0x98(%rbp)
+    17e5:	00 00 00 
+    17e8:	c7 85 6c ff ff ff 32 	movl   $0x32,-0x94(%rbp)
+    17ef:	00 00 00 
+    17f2:	48 8b 05 3f 39 00 00 	mov    0x393f(%rip),%rax        # 5138 <renderer>
+    17f9:	48 8d 95 60 ff ff ff 	lea    -0xa0(%rbp),%rdx
+    1800:	48 8b b5 f8 fe ff ff 	mov    -0x108(%rbp),%rsi
+    1807:	48 89 d1             	mov    %rdx,%rcx
+    180a:	ba 00 00 00 00       	mov    $0x0,%edx
+    180f:	48 89 c7             	mov    %rax,%rdi
+    1812:	e8 f9 f8 ff ff       	call   1110 <SDL_RenderCopy@plt>
+    1817:	8b 45 a0             	mov    -0x60(%rbp),%eax
+    181a:	89 85 70 ff ff ff    	mov    %eax,-0x90(%rbp)
+    1820:	8b 45 a4             	mov    -0x5c(%rbp),%eax
+    1823:	89 85 74 ff ff ff    	mov    %eax,-0x8c(%rbp)
+    1829:	c7 85 78 ff ff ff 32 	movl   $0x32,-0x88(%rbp)
+    1830:	00 00 00 
+    1833:	c7 85 7c ff ff ff 32 	movl   $0x32,-0x84(%rbp)
+    183a:	00 00 00 
+    183d:	48 8b 05 f4 38 00 00 	mov    0x38f4(%rip),%rax        # 5138 <renderer>
+    1844:	48 8d 95 70 ff ff ff 	lea    -0x90(%rbp),%rdx
+    184b:	48 8b b5 f8 fe ff ff 	mov    -0x108(%rbp),%rsi
+    1852:	48 89 d1             	mov    %rdx,%rcx
+    1855:	ba 00 00 00 00       	mov    $0x0,%edx
+    185a:	48 89 c7             	mov    %rax,%rdi
+    185d:	e8 ae f8 ff ff       	call   1110 <SDL_RenderCopy@plt>
+    1862:	48 8b 05 cf 38 00 00 	mov    0x38cf(%rip),%rax        # 5138 <renderer>
+    1869:	48 89 c7             	mov    %rax,%rdi
+    186c:	e8 4f f8 ff ff       	call   10c0 <SDL_RenderPresent@plt>
+    1871:	bf 10 00 00 00       	mov    $0x10,%edi
+    1876:	e8 f5 f8 ff ff       	call   1170 <SDL_Delay@plt>
+    187b:	e9 a5 fc ff ff       	jmp    1525 <main+0x24c>
+    1880:	e8 bb f8 ff ff       	call   1140 <__stack_chk_fail@plt>
+    1885:	c9                   	leave
+    1886:	c3                   	ret
+
+0000000000001887 <playerMovement>:
+    1887:	55                   	push   %rbp
+    1888:	48 89 e5             	mov    %rsp,%rbp
+    188b:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    188f:	89 75 f4             	mov    %esi,-0xc(%rbp)
+    1892:	89 55 f0             	mov    %edx,-0x10(%rbp)
+    1895:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1899:	8b 10                	mov    (%rax),%edx
+    189b:	8b 45 f4             	mov    -0xc(%rbp),%eax
+    189e:	01 c2                	add    %eax,%edx
+    18a0:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    18a4:	89 10                	mov    %edx,(%rax)
+    18a6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    18aa:	8b 50 04             	mov    0x4(%rax),%edx
+    18ad:	8b 45 f0             	mov    -0x10(%rbp),%eax
+    18b0:	01 c2                	add    %eax,%edx
+    18b2:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    18b6:	89 50 04             	mov    %edx,0x4(%rax)
+    18b9:	90                   	nop
+    18ba:	5d                   	pop    %rbp
+    18bb:	c3                   	ret
+
+00000000000018bc <Createplayer>:
+    18bc:	55                   	push   %rbp
+    18bd:	48 89 e5             	mov    %rsp,%rbp
+    18c0:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    18c3:	89 75 e8             	mov    %esi,-0x18(%rbp)
+    18c6:	89 55 e4             	mov    %edx,-0x1c(%rbp)
+    18c9:	89 4d e0             	mov    %ecx,-0x20(%rbp)
+    18cc:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    18cf:	89 45 f0             	mov    %eax,-0x10(%rbp)
+    18d2:	8b 45 e8             	mov    -0x18(%rbp),%eax
+    18d5:	89 45 f4             	mov    %eax,-0xc(%rbp)
+    18d8:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+    18db:	89 45 f8             	mov    %eax,-0x8(%rbp)
+    18de:	8b 45 e0             	mov    -0x20(%rbp),%eax
+    18e1:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    18e4:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    18e8:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    18ec:	5d                   	pop    %rbp
+    18ed:	c3                   	ret
+
+00000000000018ee <PlayerTexture>:
+    18ee:	55                   	push   %rbp
+    18ef:	48 89 e5             	mov    %rsp,%rbp
+    18f2:	48 83 ec 10          	sub    $0x10,%rsp
+    18f6:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    18fa:	48 8b 05 e7 37 00 00 	mov    0x37e7(%rip),%rax        # 50e8 <playerSurPath>
+    1901:	48 8d 15 e7 17 00 00 	lea    0x17e7(%rip),%rdx        # 30ef <_IO_stdin_used+0xef>
+    1908:	48 89 d6             	mov    %rdx,%rsi
+    190b:	48 89 c7             	mov    %rax,%rdi
+    190e:	e8 6d f7 ff ff       	call   1080 <SDL_RWFromFile@plt>
+    1913:	be 01 00 00 00       	mov    $0x1,%esi
+    1918:	48 89 c7             	mov    %rax,%rdi
+    191b:	e8 40 f8 ff ff       	call   1160 <SDL_LoadBMP_RW@plt>
+    1920:	48 89 05 19 38 00 00 	mov    %rax,0x3819(%rip)        # 5140 <playerSurface>
+    1927:	48 8b 15 12 38 00 00 	mov    0x3812(%rip),%rdx        # 5140 <playerSurface>
+    192e:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1932:	48 89 d6             	mov    %rdx,%rsi
+    1935:	48 89 c7             	mov    %rax,%rdi
+    1938:	e8 73 f7 ff ff       	call   10b0 <SDL_CreateTextureFromSurface@plt>
+    193d:	48 89 05 04 38 00 00 	mov    %rax,0x3804(%rip)        # 5148 <Texture>
+    1944:	48 8b 05 9d 37 00 00 	mov    0x379d(%rip),%rax        # 50e8 <playerSurPath>
+    194b:	48 85 c0             	test   %rax,%rax
+    194e:	75 1b                	jne    196b <PlayerTexture+0x7d>
+    1950:	48 8b 05 f1 37 00 00 	mov    0x37f1(%rip),%rax        # 5148 <Texture>
+    1957:	48 85 c0             	test   %rax,%rax
+    195a:	75 0f                	jne    196b <PlayerTexture+0x7d>
+    195c:	48 8d 05 8f 17 00 00 	lea    0x178f(%rip),%rax        # 30f2 <_IO_stdin_used+0xf2>
+    1963:	48 89 c7             	mov    %rax,%rdi
+    1966:	e8 25 f8 ff ff       	call   1190 <perror@plt>
+    196b:	48 8b 05 d6 37 00 00 	mov    0x37d6(%rip),%rax        # 5148 <Texture>
+    1972:	c9                   	leave
+    1973:	c3                   	ret
+
+0000000000001974 <mapTexture>:
+    1974:	55                   	push   %rbp
+    1975:	48 89 e5             	mov    %rsp,%rbp
+    1978:	48 83 ec 10          	sub    $0x10,%rsp
+    197c:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1980:	48 8b 05 69 37 00 00 	mov    0x3769(%rip),%rax        # 50f0 <spritePath>
+    1987:	48 8d 15 92 17 00 00 	lea    0x1792(%rip),%rdx        # 3120 <_IO_stdin_used+0x120>
+    198e:	48 89 d6             	mov    %rdx,%rsi
+    1991:	48 89 c7             	mov    %rax,%rdi
+    1994:	e8 e7 f6 ff ff       	call   1080 <SDL_RWFromFile@plt>
+    1999:	be 01 00 00 00       	mov    $0x1,%esi
+    199e:	48 89 c7             	mov    %rax,%rdi
+    19a1:	e8 ba f7 ff ff       	call   1160 <SDL_LoadBMP_RW@plt>
+    19a6:	48 89 05 a3 37 00 00 	mov    %rax,0x37a3(%rip)        # 5150 <spriteSurface>
+    19ad:	48 8b 05 9c 37 00 00 	mov    0x379c(%rip),%rax        # 5150 <spriteSurface>
+    19b4:	48 85 c0             	test   %rax,%rax
+    19b7:	75 0f                	jne    19c8 <mapTexture+0x54>
+    19b9:	48 8d 05 63 17 00 00 	lea    0x1763(%rip),%rax        # 3123 <_IO_stdin_used+0x123>
+    19c0:	48 89 c7             	mov    %rax,%rdi
+    19c3:	e8 c8 f7 ff ff       	call   1190 <perror@plt>
+    19c8:	48 8b 15 81 37 00 00 	mov    0x3781(%rip),%rdx        # 5150 <spriteSurface>
+    19cf:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    19d3:	48 89 d6             	mov    %rdx,%rsi
+    19d6:	48 89 c7             	mov    %rax,%rdi
+    19d9:	e8 d2 f6 ff ff       	call   10b0 <SDL_CreateTextureFromSurface@plt>
+    19de:	48 89 05 73 37 00 00 	mov    %rax,0x3773(%rip)        # 5158 <spriteTexture>
+    19e5:	48 8b 05 6c 37 00 00 	mov    0x376c(%rip),%rax        # 5158 <spriteTexture>
+    19ec:	48 85 c0             	test   %rax,%rax
+    19ef:	75 0f                	jne    1a00 <mapTexture+0x8c>
+    19f1:	48 8d 05 48 17 00 00 	lea    0x1748(%rip),%rax        # 3140 <_IO_stdin_used+0x140>
+    19f8:	48 89 c7             	mov    %rax,%rdi
+    19fb:	e8 90 f7 ff ff       	call   1190 <perror@plt>
+    1a00:	48 8b 05 49 37 00 00 	mov    0x3749(%rip),%rax        # 5150 <spriteSurface>
+    1a07:	48 89 c7             	mov    %rax,%rdi
+    1a0a:	e8 21 f6 ff ff       	call   1030 <SDL_FreeSurface@plt>
+    1a0f:	48 8b 05 42 37 00 00 	mov    0x3742(%rip),%rax        # 5158 <spriteTexture>
+    1a16:	c9                   	leave
+    1a17:	c3                   	ret
+
+0000000000001a18 <openFont>:
+    1a18:	55                   	push   %rbp
+    1a19:	48 89 e5             	mov    %rsp,%rbp
+    1a1c:	48 83 ec 10          	sub    $0x10,%rsp
+    1a20:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1a24:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1a28:	be 17 00 00 00       	mov    $0x17,%esi
+    1a2d:	48 89 c7             	mov    %rax,%rdi
+    1a30:	e8 eb f6 ff ff       	call   1120 <TTF_OpenFont@plt>
+    1a35:	48 89 05 24 37 00 00 	mov    %rax,0x3724(%rip)        # 5160 <font>
+    1a3c:	48 8b 05 1d 37 00 00 	mov    0x371d(%rip),%rax        # 5160 <font>
+    1a43:	48 85 c0             	test   %rax,%rax
+    1a46:	75 0f                	jne    1a57 <openFont+0x3f>
+    1a48:	48 8d 05 19 17 00 00 	lea    0x1719(%rip),%rax        # 3168 <_IO_stdin_used+0x168>
+    1a4f:	48 89 c7             	mov    %rax,%rdi
+    1a52:	e8 39 f7 ff ff       	call   1190 <perror@plt>
+    1a57:	90                   	nop
+    1a58:	c9                   	leave
+    1a59:	c3                   	ret
+
+0000000000001a5a <init_texture>:
+    1a5a:	55                   	push   %rbp
+    1a5b:	48 89 e5             	mov    %rsp,%rbp
+    1a5e:	e8 0d f6 ff ff       	call   1070 <TTF_Init@plt>
+    1a63:	85 c0                	test   %eax,%eax
+    1a65:	79 30                	jns    1a97 <init_texture+0x3d>
+    1a67:	e8 14 f7 ff ff       	call   1180 <SDL_GetError@plt>
+    1a6c:	48 89 c2             	mov    %rax,%rdx
+    1a6f:	48 8b 05 aa 36 00 00 	mov    0x36aa(%rip),%rax        # 5120 <stderr@GLIBC_2.2.5>
+    1a76:	48 8d 0d 03 17 00 00 	lea    0x1703(%rip),%rcx        # 3180 <_IO_stdin_used+0x180>
+    1a7d:	48 89 ce             	mov    %rcx,%rsi
+    1a80:	48 89 c7             	mov    %rax,%rdi
+    1a83:	b8 00 00 00 00       	mov    $0x0,%eax
+    1a88:	e8 23 f7 ff ff       	call   11b0 <fprintf@plt>
+    1a8d:	bf 01 00 00 00       	mov    $0x1,%edi
+    1a92:	e8 b9 f5 ff ff       	call   1050 <exit@plt>
+    1a97:	90                   	nop
+    1a98:	5d                   	pop    %rbp
+    1a99:	c3                   	ret
+
+0000000000001a9a <renderText>:
+    1a9a:	55                   	push   %rbp
+    1a9b:	48 89 e5             	mov    %rsp,%rbp
+    1a9e:	48 83 ec 50          	sub    $0x50,%rsp
+    1aa2:	48 89 7d b8          	mov    %rdi,-0x48(%rbp)
+    1aa6:	89 75 b4             	mov    %esi,-0x4c(%rbp)
+    1aa9:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    1ab0:	00 00 
+    1ab2:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    1ab6:	31 c0                	xor    %eax,%eax
+    1ab8:	8b 55 b4             	mov    -0x4c(%rbp),%edx
+    1abb:	48 8d 45 e0          	lea    -0x20(%rbp),%rax
+    1abf:	48 8d 0d eb 16 00 00 	lea    0x16eb(%rip),%rcx        # 31b1 <_IO_stdin_used+0x1b1>
+    1ac6:	48 89 ce             	mov    %rcx,%rsi
+    1ac9:	48 89 c7             	mov    %rax,%rdi
+    1acc:	b8 00 00 00 00       	mov    $0x0,%eax
+    1ad1:	e8 1a f6 ff ff       	call   10f0 <sprintf@plt>
+    1ad6:	c6 45 c8 00          	movb   $0x0,-0x38(%rbp)
+    1ada:	c6 45 c9 00          	movb   $0x0,-0x37(%rbp)
+    1ade:	c6 45 ca 00          	movb   $0x0,-0x36(%rbp)
+    1ae2:	c6 45 cb ff          	movb   $0xff,-0x35(%rbp)
+    1ae6:	c6 45 cc ff          	movb   $0xff,-0x34(%rbp)
+    1aea:	c6 45 cd ff          	movb   $0xff,-0x33(%rbp)
+    1aee:	c6 45 ce ff          	movb   $0xff,-0x32(%rbp)
+    1af2:	c6 45 cf ff          	movb   $0xff,-0x31(%rbp)
+    1af6:	48 8b 05 63 36 00 00 	mov    0x3663(%rip),%rax        # 5160 <font>
+    1afd:	8b 4d cc             	mov    -0x34(%rbp),%ecx
+    1b00:	8b 55 c8             	mov    -0x38(%rbp),%edx
+    1b03:	48 8d 75 e0          	lea    -0x20(%rbp),%rsi
+    1b07:	48 89 c7             	mov    %rax,%rdi
+    1b0a:	e8 21 f6 ff ff       	call   1130 <TTF_RenderText_Shaded@plt>
+    1b0f:	48 89 05 52 36 00 00 	mov    %rax,0x3652(%rip)        # 5168 <textSurface>
+    1b16:	48 8b 15 4b 36 00 00 	mov    0x364b(%rip),%rdx        # 5168 <textSurface>
+    1b1d:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+    1b21:	48 89 d6             	mov    %rdx,%rsi
+    1b24:	48 89 c7             	mov    %rax,%rdi
+    1b27:	e8 84 f5 ff ff       	call   10b0 <SDL_CreateTextureFromSurface@plt>
+    1b2c:	48 89 05 3d 36 00 00 	mov    %rax,0x363d(%rip)        # 5170 <textTexture>
+    1b33:	48 8b 05 2e 36 00 00 	mov    0x362e(%rip),%rax        # 5168 <textSurface>
+    1b3a:	8b 50 10             	mov    0x10(%rax),%edx
+    1b3d:	b8 20 03 00 00       	mov    $0x320,%eax
+    1b42:	29 d0                	sub    %edx,%eax
+    1b44:	89 c2                	mov    %eax,%edx
+    1b46:	c1 ea 1f             	shr    $0x1f,%edx
+    1b49:	01 d0                	add    %edx,%eax
+    1b4b:	d1 f8                	sar    $1,%eax
+    1b4d:	89 45 c0             	mov    %eax,-0x40(%rbp)
+    1b50:	c7 45 c4 0a 00 00 00 	movl   $0xa,-0x3c(%rbp)
+    1b57:	8b 45 c0             	mov    -0x40(%rbp),%eax
+    1b5a:	89 45 d0             	mov    %eax,-0x30(%rbp)
+    1b5d:	8b 45 c4             	mov    -0x3c(%rbp),%eax
+    1b60:	89 45 d4             	mov    %eax,-0x2c(%rbp)
+    1b63:	c7 45 d8 64 00 00 00 	movl   $0x64,-0x28(%rbp)
+    1b6a:	c7 45 dc 32 00 00 00 	movl   $0x32,-0x24(%rbp)
+    1b71:	48 8b 35 f8 35 00 00 	mov    0x35f8(%rip),%rsi        # 5170 <textTexture>
+    1b78:	48 8d 55 d0          	lea    -0x30(%rbp),%rdx
+    1b7c:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+    1b80:	48 89 d1             	mov    %rdx,%rcx
+    1b83:	ba 00 00 00 00       	mov    $0x0,%edx
+    1b88:	48 89 c7             	mov    %rax,%rdi
+    1b8b:	e8 80 f5 ff ff       	call   1110 <SDL_RenderCopy@plt>
+    1b90:	90                   	nop
+    1b91:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1b95:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+    1b9c:	00 00 
+    1b9e:	74 05                	je     1ba5 <renderText+0x10b>
+    1ba0:	e8 9b f5 ff ff       	call   1140 <__stack_chk_fail@plt>
+    1ba5:	c9                   	leave
+    1ba6:	c3                   	ret
+
+0000000000001ba7 <RandomFootPos>:
+    1ba7:	55                   	push   %rbp
+    1ba8:	48 89 e5             	mov    %rsp,%rbp
+    1bab:	48 83 ec 20          	sub    $0x20,%rsp
+    1baf:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1bb3:	bf 00 00 00 00       	mov    $0x0,%edi
+    1bb8:	e8 13 f6 ff ff       	call   11d0 <time@plt>
+    1bbd:	89 c7                	mov    %eax,%edi
+    1bbf:	e8 8c f5 ff ff       	call   1150 <srand@plt>
+    1bc4:	e8 d7 f5 ff ff       	call   11a0 <rand@plt>
+    1bc9:	48 63 d0             	movslq %eax,%rdx
+    1bcc:	48 69 d2 c5 b3 a2 91 	imul   $0xffffffff91a2b3c5,%rdx,%rdx
+    1bd3:	48 c1 ea 20          	shr    $0x20,%rdx
+    1bd7:	01 c2                	add    %eax,%edx
+    1bd9:	c1 fa 08             	sar    $0x8,%edx
+    1bdc:	89 c1                	mov    %eax,%ecx
+    1bde:	c1 f9 1f             	sar    $0x1f,%ecx
+    1be1:	29 ca                	sub    %ecx,%edx
+    1be3:	89 55 f8             	mov    %edx,-0x8(%rbp)
+    1be6:	8b 55 f8             	mov    -0x8(%rbp),%edx
+    1be9:	69 d2 c2 01 00 00    	imul   $0x1c2,%edx,%edx
+    1bef:	29 d0                	sub    %edx,%eax
+    1bf1:	89 45 f8             	mov    %eax,-0x8(%rbp)
+    1bf4:	e8 a7 f5 ff ff       	call   11a0 <rand@plt>
+    1bf9:	48 63 d0             	movslq %eax,%rdx
+    1bfc:	48 69 d2 c5 b3 a2 91 	imul   $0xffffffff91a2b3c5,%rdx,%rdx
+    1c03:	48 c1 ea 20          	shr    $0x20,%rdx
+    1c07:	01 c2                	add    %eax,%edx
+    1c09:	c1 fa 08             	sar    $0x8,%edx
+    1c0c:	89 c1                	mov    %eax,%ecx
+    1c0e:	c1 f9 1f             	sar    $0x1f,%ecx
+    1c11:	29 ca                	sub    %ecx,%edx
+    1c13:	89 55 fc             	mov    %edx,-0x4(%rbp)
+    1c16:	8b 55 fc             	mov    -0x4(%rbp),%edx
+    1c19:	69 d2 c2 01 00 00    	imul   $0x1c2,%edx,%edx
+    1c1f:	29 d0                	sub    %edx,%eax
+    1c21:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    1c24:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1c28:	8b 55 fc             	mov    -0x4(%rbp),%edx
+    1c2b:	89 10                	mov    %edx,(%rax)
+    1c2d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1c31:	8b 55 f8             	mov    -0x8(%rbp),%edx
+    1c34:	89 50 04             	mov    %edx,0x4(%rax)
+    1c37:	90                   	nop
+    1c38:	c9                   	leave
+    1c39:	c3                   	ret
+
+0000000000001c3a <checkCollisionFood>:
+    1c3a:	55                   	push   %rbp
+    1c3b:	48 89 e5             	mov    %rsp,%rbp
+    1c3e:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1c42:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+    1c46:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1c4a:	8b 10                	mov    (%rax),%edx
+    1c4c:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1c50:	8b 08                	mov    (%rax),%ecx
+    1c52:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1c56:	8b 40 08             	mov    0x8(%rax),%eax
+    1c59:	01 c8                	add    %ecx,%eax
+    1c5b:	39 c2                	cmp    %eax,%edx
+    1c5d:	7d 56                	jge    1cb5 <checkCollisionFood+0x7b>
+    1c5f:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1c63:	8b 10                	mov    (%rax),%edx
+    1c65:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1c69:	8b 40 08             	mov    0x8(%rax),%eax
+    1c6c:	01 c2                	add    %eax,%edx
+    1c6e:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1c72:	8b 00                	mov    (%rax),%eax
+    1c74:	39 c2                	cmp    %eax,%edx
+    1c76:	7e 3d                	jle    1cb5 <checkCollisionFood+0x7b>
+    1c78:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1c7c:	8b 50 04             	mov    0x4(%rax),%edx
+    1c7f:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1c83:	8b 48 04             	mov    0x4(%rax),%ecx
+    1c86:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1c8a:	8b 40 0c             	mov    0xc(%rax),%eax
+    1c8d:	01 c8                	add    %ecx,%eax
+    1c8f:	39 c2                	cmp    %eax,%edx
+    1c91:	7d 22                	jge    1cb5 <checkCollisionFood+0x7b>
+    1c93:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1c97:	8b 50 04             	mov    0x4(%rax),%edx
+    1c9a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1c9e:	8b 40 0c             	mov    0xc(%rax),%eax
+    1ca1:	01 c2                	add    %eax,%edx
+    1ca3:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1ca7:	8b 40 04             	mov    0x4(%rax),%eax
+    1caa:	39 c2                	cmp    %eax,%edx
+    1cac:	7e 07                	jle    1cb5 <checkCollisionFood+0x7b>
+    1cae:	b8 01 00 00 00       	mov    $0x1,%eax
+    1cb3:	eb 05                	jmp    1cba <checkCollisionFood+0x80>
+    1cb5:	b8 00 00 00 00       	mov    $0x0,%eax
+    1cba:	83 e0 01             	and    $0x1,%eax
+    1cbd:	5d                   	pop    %rbp
+    1cbe:	c3                   	ret
+
+0000000000001cbf <checkCollisionEn>:
+    1cbf:	55                   	push   %rbp
+    1cc0:	48 89 e5             	mov    %rsp,%rbp
+    1cc3:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1cc7:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+    1ccb:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1ccf:	8b 10                	mov    (%rax),%edx
+    1cd1:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1cd5:	8b 08                	mov    (%rax),%ecx
+    1cd7:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1cdb:	8b 40 08             	mov    0x8(%rax),%eax
+    1cde:	01 c8                	add    %ecx,%eax
+    1ce0:	39 c2                	cmp    %eax,%edx
+    1ce2:	7d 56                	jge    1d3a <checkCollisionEn+0x7b>
+    1ce4:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1ce8:	8b 10                	mov    (%rax),%edx
+    1cea:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1cee:	8b 40 08             	mov    0x8(%rax),%eax
+    1cf1:	01 c2                	add    %eax,%edx
+    1cf3:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1cf7:	8b 00                	mov    (%rax),%eax
+    1cf9:	39 c2                	cmp    %eax,%edx
+    1cfb:	7e 3d                	jle    1d3a <checkCollisionEn+0x7b>
+    1cfd:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1d01:	8b 50 04             	mov    0x4(%rax),%edx
+    1d04:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1d08:	8b 48 04             	mov    0x4(%rax),%ecx
+    1d0b:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1d0f:	8b 40 0c             	mov    0xc(%rax),%eax
+    1d12:	01 c8                	add    %ecx,%eax
+    1d14:	39 c2                	cmp    %eax,%edx
+    1d16:	7d 22                	jge    1d3a <checkCollisionEn+0x7b>
+    1d18:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1d1c:	8b 50 04             	mov    0x4(%rax),%edx
+    1d1f:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1d23:	8b 40 0c             	mov    0xc(%rax),%eax
+    1d26:	01 c2                	add    %eax,%edx
+    1d28:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1d2c:	8b 40 04             	mov    0x4(%rax),%eax
+    1d2f:	39 c2                	cmp    %eax,%edx
+    1d31:	7e 07                	jle    1d3a <checkCollisionEn+0x7b>
+    1d33:	b8 01 00 00 00       	mov    $0x1,%eax
+    1d38:	eb 05                	jmp    1d3f <checkCollisionEn+0x80>
+    1d3a:	b8 00 00 00 00       	mov    $0x0,%eax
+    1d3f:	83 e0 01             	and    $0x1,%eax
+    1d42:	5d                   	pop    %rbp
+    1d43:	c3                   	ret
+
+0000000000001d44 <updatePlayerToEnermy1>:
+    1d44:	55                   	push   %rbp
+    1d45:	48 89 e5             	mov    %rsp,%rbp
+    1d48:	48 83 ec 20          	sub    $0x20,%rsp
+    1d4c:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1d50:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+    1d54:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    1d58:	8b 10                	mov    (%rax),%edx
+    1d5a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1d5e:	8b 00                	mov    (%rax),%eax
+    1d60:	29 c2                	sub    %eax,%edx
+    1d62:	89 55 f4             	mov    %edx,-0xc(%rbp)
+    1d65:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    1d69:	8b 50 04             	mov    0x4(%rax),%edx
+    1d6c:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1d70:	8b 40 04             	mov    0x4(%rax),%eax
+    1d73:	29 c2                	sub    %eax,%edx
+    1d75:	89 55 f8             	mov    %edx,-0x8(%rbp)
+    1d78:	8b 45 f4             	mov    -0xc(%rbp),%eax
+    1d7b:	0f af c0             	imul   %eax,%eax
+    1d7e:	89 c2                	mov    %eax,%edx
+    1d80:	8b 45 f8             	mov    -0x8(%rbp),%eax
+    1d83:	0f af c0             	imul   %eax,%eax
+    1d86:	01 d0                	add    %edx,%eax
+    1d88:	66 0f ef d2          	pxor   %xmm2,%xmm2
+    1d8c:	f2 0f 2a d0          	cvtsi2sd %eax,%xmm2
+    1d90:	66 48 0f 7e d0       	movq   %xmm2,%rax
+    1d95:	66 48 0f 6e c0       	movq   %rax,%xmm0
+    1d9a:	e8 21 f4 ff ff       	call   11c0 <sqrt@plt>
+    1d9f:	f2 0f 5a c0          	cvtsd2ss %xmm0,%xmm0
+    1da3:	f3 0f 11 45 fc       	movss  %xmm0,-0x4(%rbp)
+    1da8:	f3 0f 10 05 04 14 00 	movss  0x1404(%rip),%xmm0        # 31b4 <_IO_stdin_used+0x1b4>
+    1daf:	00 
+    1db0:	0f 2f 45 fc          	comiss -0x4(%rbp),%xmm0
+    1db4:	0f 86 88 00 00 00    	jbe    1e42 <updatePlayerToEnermy1+0xfe>
+    1dba:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1dbe:	8b 00                	mov    (%rax),%eax
+    1dc0:	66 0f ef c9          	pxor   %xmm1,%xmm1
+    1dc4:	f3 0f 2a c8          	cvtsi2ss %eax,%xmm1
+    1dc8:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    1dcc:	8b 10                	mov    (%rax),%edx
+    1dce:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1dd2:	8b 00                	mov    (%rax),%eax
+    1dd4:	29 c2                	sub    %eax,%edx
+    1dd6:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1dda:	8b 40 10             	mov    0x10(%rax),%eax
+    1ddd:	0f af c2             	imul   %edx,%eax
+    1de0:	66 0f ef c0          	pxor   %xmm0,%xmm0
+    1de4:	f3 0f 2a c0          	cvtsi2ss %eax,%xmm0
+    1de8:	f3 0f 5e 45 fc       	divss  -0x4(%rbp),%xmm0
+    1ded:	f3 0f 58 c1          	addss  %xmm1,%xmm0
+    1df1:	f3 0f 2c d0          	cvttss2si %xmm0,%edx
+    1df5:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1df9:	89 10                	mov    %edx,(%rax)
+    1dfb:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1dff:	8b 40 04             	mov    0x4(%rax),%eax
+    1e02:	66 0f ef c9          	pxor   %xmm1,%xmm1
+    1e06:	f3 0f 2a c8          	cvtsi2ss %eax,%xmm1
+    1e0a:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    1e0e:	8b 50 04             	mov    0x4(%rax),%edx
+    1e11:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1e15:	8b 40 04             	mov    0x4(%rax),%eax
+    1e18:	29 c2                	sub    %eax,%edx
+    1e1a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1e1e:	8b 40 10             	mov    0x10(%rax),%eax
+    1e21:	0f af c2             	imul   %edx,%eax
+    1e24:	66 0f ef c0          	pxor   %xmm0,%xmm0
+    1e28:	f3 0f 2a c0          	cvtsi2ss %eax,%xmm0
+    1e2c:	f3 0f 5e 45 fc       	divss  -0x4(%rbp),%xmm0
+    1e31:	f3 0f 58 c1          	addss  %xmm1,%xmm0
+    1e35:	f3 0f 2c d0          	cvttss2si %xmm0,%edx
+    1e39:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1e3d:	89 50 04             	mov    %edx,0x4(%rax)
+    1e40:	eb 15                	jmp    1e57 <updatePlayerToEnermy1+0x113>
+    1e42:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1e46:	c7 00 c8 00 00 00    	movl   $0xc8,(%rax)
+    1e4c:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1e50:	c7 40 04 c8 00 00 00 	movl   $0xc8,0x4(%rax)
+    1e57:	90                   	nop
+    1e58:	c9                   	leave
+    1e59:	c3                   	ret
+
+0000000000001e5a <CreateFood>:
+    1e5a:	55                   	push   %rbp
+    1e5b:	48 89 e5             	mov    %rsp,%rbp
+    1e5e:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    1e61:	89 75 e8             	mov    %esi,-0x18(%rbp)
+    1e64:	89 55 e4             	mov    %edx,-0x1c(%rbp)
+    1e67:	89 4d e0             	mov    %ecx,-0x20(%rbp)
+    1e6a:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    1e6d:	89 45 f0             	mov    %eax,-0x10(%rbp)
+    1e70:	8b 45 e8             	mov    -0x18(%rbp),%eax
+    1e73:	89 45 f4             	mov    %eax,-0xc(%rbp)
+    1e76:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+    1e79:	89 45 f8             	mov    %eax,-0x8(%rbp)
+    1e7c:	8b 45 e0             	mov    -0x20(%rbp),%eax
+    1e7f:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    1e82:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    1e86:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    1e8a:	5d                   	pop    %rbp
+    1e8b:	c3                   	ret
+
+0000000000001e8c <foodTexture>:
+    1e8c:	55                   	push   %rbp
+    1e8d:	48 89 e5             	mov    %rsp,%rbp
+    1e90:	48 83 ec 20          	sub    $0x20,%rsp
+    1e94:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1e98:	48 8b 05 59 32 00 00 	mov    0x3259(%rip),%rax        # 50f8 <foodPath>
+    1e9f:	48 8d 15 1f 13 00 00 	lea    0x131f(%rip),%rdx        # 31c5 <_IO_stdin_used+0x1c5>
+    1ea6:	48 89 d6             	mov    %rdx,%rsi
+    1ea9:	48 89 c7             	mov    %rax,%rdi
+    1eac:	e8 cf f1 ff ff       	call   1080 <SDL_RWFromFile@plt>
+    1eb1:	be 01 00 00 00       	mov    $0x1,%esi
+    1eb6:	48 89 c7             	mov    %rax,%rdi
+    1eb9:	e8 a2 f2 ff ff       	call   1160 <SDL_LoadBMP_RW@plt>
+    1ebe:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+    1ec2:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx
+    1ec6:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1eca:	48 89 d6             	mov    %rdx,%rsi
+    1ecd:	48 89 c7             	mov    %rax,%rdi
+    1ed0:	e8 db f1 ff ff       	call   10b0 <SDL_CreateTextureFromSurface@plt>
+    1ed5:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    1ed9:	48 83 7d f0 00       	cmpq   $0x0,-0x10(%rbp)
+    1ede:	75 16                	jne    1ef6 <foodTexture+0x6a>
+    1ee0:	48 83 7d f8 00       	cmpq   $0x0,-0x8(%rbp)
+    1ee5:	75 0f                	jne    1ef6 <foodTexture+0x6a>
+    1ee7:	48 8d 05 da 12 00 00 	lea    0x12da(%rip),%rax        # 31c8 <_IO_stdin_used+0x1c8>
+    1eee:	48 89 c7             	mov    %rax,%rdi
+    1ef1:	e8 9a f2 ff ff       	call   1190 <perror@plt>
+    1ef6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1efa:	c9                   	leave
+    1efb:	c3                   	ret
+
+0000000000001efc <CreateEnermy>:
+    1efc:	55                   	push   %rbp
+    1efd:	48 89 e5             	mov    %rsp,%rbp
+    1f00:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+    1f04:	89 75 d4             	mov    %esi,-0x2c(%rbp)
+    1f07:	89 55 d0             	mov    %edx,-0x30(%rbp)
+    1f0a:	89 4d cc             	mov    %ecx,-0x34(%rbp)
+    1f0d:	44 89 45 c8          	mov    %r8d,-0x38(%rbp)
+    1f11:	44 89 4d c4          	mov    %r9d,-0x3c(%rbp)
+    1f15:	8b 45 d4             	mov    -0x2c(%rbp),%eax
+    1f18:	89 45 e0             	mov    %eax,-0x20(%rbp)
+    1f1b:	8b 45 d0             	mov    -0x30(%rbp),%eax
+    1f1e:	89 45 e4             	mov    %eax,-0x1c(%rbp)
+    1f21:	8b 45 cc             	mov    -0x34(%rbp),%eax
+    1f24:	89 45 e8             	mov    %eax,-0x18(%rbp)
+    1f27:	8b 45 c8             	mov    -0x38(%rbp),%eax
+    1f2a:	89 45 ec             	mov    %eax,-0x14(%rbp)
+    1f2d:	8b 45 c4             	mov    -0x3c(%rbp),%eax
+    1f30:	89 45 f0             	mov    %eax,-0x10(%rbp)
+    1f33:	48 8b 4d d8          	mov    -0x28(%rbp),%rcx
+    1f37:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    1f3b:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+    1f3f:	48 89 01             	mov    %rax,(%rcx)
+    1f42:	48 89 51 08          	mov    %rdx,0x8(%rcx)
+    1f46:	8b 45 f0             	mov    -0x10(%rbp),%eax
+    1f49:	89 41 10             	mov    %eax,0x10(%rcx)
+    1f4c:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+    1f50:	5d                   	pop    %rbp
+    1f51:	c3                   	ret
+
+0000000000001f52 <enermyTexture>:
+    1f52:	55                   	push   %rbp
+    1f53:	48 89 e5             	mov    %rsp,%rbp
+    1f56:	48 83 ec 20          	sub    $0x20,%rsp
+    1f5a:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    1f5e:	48 8b 05 9b 31 00 00 	mov    0x319b(%rip),%rax        # 5100 <enPath>
+    1f65:	48 8d 15 93 12 00 00 	lea    0x1293(%rip),%rdx        # 31ff <_IO_stdin_used+0x1ff>
+    1f6c:	48 89 d6             	mov    %rdx,%rsi
+    1f6f:	48 89 c7             	mov    %rax,%rdi
+    1f72:	e8 09 f1 ff ff       	call   1080 <SDL_RWFromFile@plt>
+    1f77:	be 01 00 00 00       	mov    $0x1,%esi
+    1f7c:	48 89 c7             	mov    %rax,%rdi
+    1f7f:	e8 dc f1 ff ff       	call   1160 <SDL_LoadBMP_RW@plt>
+    1f84:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+    1f88:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx
+    1f8c:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    1f90:	48 89 d6             	mov    %rdx,%rsi
+    1f93:	48 89 c7             	mov    %rax,%rdi
+    1f96:	e8 15 f1 ff ff       	call   10b0 <SDL_CreateTextureFromSurface@plt>
+    1f9b:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    1f9f:	48 83 7d f0 00       	cmpq   $0x0,-0x10(%rbp)
+    1fa4:	75 16                	jne    1fbc <enermyTexture+0x6a>
+    1fa6:	48 83 7d f8 00       	cmpq   $0x0,-0x8(%rbp)
+    1fab:	75 0f                	jne    1fbc <enermyTexture+0x6a>
+    1fad:	48 8d 05 54 12 00 00 	lea    0x1254(%rip),%rax        # 3208 <_IO_stdin_used+0x208>
+    1fb4:	48 89 c7             	mov    %rax,%rdi
+    1fb7:	e8 d4 f1 ff ff       	call   1190 <perror@plt>
+    1fbc:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1fc0:	c9                   	leave
+    1fc1:	c3                   	ret
+
+0000000000001fc2 <openFont2>:
+    1fc2:	55                   	push   %rbp
+    1fc3:	48 89 e5             	mov    %rsp,%rbp
+    1fc6:	48 83 ec 10          	sub    $0x10,%rsp
+    1fca:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    1fce:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    1fd2:	be 17 00 00 00       	mov    $0x17,%esi
+    1fd7:	48 89 c7             	mov    %rax,%rdi
+    1fda:	e8 41 f1 ff ff       	call   1120 <TTF_OpenFont@plt>
+    1fdf:	48 89 05 b2 31 00 00 	mov    %rax,0x31b2(%rip)        # 5198 <font2>
+    1fe6:	48 8b 05 ab 31 00 00 	mov    0x31ab(%rip),%rax        # 5198 <font2>
+    1fed:	48 85 c0             	test   %rax,%rax
+    1ff0:	75 0f                	jne    2001 <openFont2+0x3f>
+    1ff2:	48 8d 05 37 12 00 00 	lea    0x1237(%rip),%rax        # 3230 <_IO_stdin_used+0x230>
+    1ff9:	48 89 c7             	mov    %rax,%rdi
+    1ffc:	e8 8f f1 ff ff       	call   1190 <perror@plt>
+    2001:	90                   	nop
+    2002:	c9                   	leave
+    2003:	c3                   	ret
+
+0000000000002004 <init_texture2>:
+    2004:	55                   	push   %rbp
+    2005:	48 89 e5             	mov    %rsp,%rbp
+    2008:	e8 63 f0 ff ff       	call   1070 <TTF_Init@plt>
+    200d:	85 c0                	test   %eax,%eax
+    200f:	79 30                	jns    2041 <init_texture2+0x3d>
+    2011:	e8 6a f1 ff ff       	call   1180 <SDL_GetError@plt>
+    2016:	48 89 c2             	mov    %rax,%rdx
+    2019:	48 8b 05 00 31 00 00 	mov    0x3100(%rip),%rax        # 5120 <stderr@GLIBC_2.2.5>
+    2020:	48 8d 0d 21 12 00 00 	lea    0x1221(%rip),%rcx        # 3248 <_IO_stdin_used+0x248>
+    2027:	48 89 ce             	mov    %rcx,%rsi
+    202a:	48 89 c7             	mov    %rax,%rdi
+    202d:	b8 00 00 00 00       	mov    $0x0,%eax
+    2032:	e8 79 f1 ff ff       	call   11b0 <fprintf@plt>
+    2037:	bf 01 00 00 00       	mov    $0x1,%edi
+    203c:	e8 0f f0 ff ff       	call   1050 <exit@plt>
+    2041:	90                   	nop
+    2042:	5d                   	pop    %rbp
+    2043:	c3                   	ret
+
+0000000000002044 <renderGameOver>:
+    2044:	55                   	push   %rbp
+    2045:	48 89 e5             	mov    %rsp,%rbp
+    2048:	48 83 ec 50          	sub    $0x50,%rsp
+    204c:	48 89 7d b8          	mov    %rdi,-0x48(%rbp)
+    2050:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    2057:	00 00 
+    2059:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    205d:	31 c0                	xor    %eax,%eax
+    205f:	48 8d 05 13 12 00 00 	lea    0x1213(%rip),%rax        # 3279 <_IO_stdin_used+0x279>
+    2066:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+    206a:	c6 45 d0 00          	movb   $0x0,-0x30(%rbp)
+    206e:	c6 45 d1 00          	movb   $0x0,-0x2f(%rbp)
+    2072:	c6 45 d2 00          	movb   $0x0,-0x2e(%rbp)
+    2076:	c6 45 d3 ff          	movb   $0xff,-0x2d(%rbp)
+    207a:	c6 45 d4 ff          	movb   $0xff,-0x2c(%rbp)
+    207e:	c6 45 d5 00          	movb   $0x0,-0x2b(%rbp)
+    2082:	c6 45 d6 00          	movb   $0x0,-0x2a(%rbp)
+    2086:	c6 45 d7 ff          	movb   $0xff,-0x29(%rbp)
+    208a:	48 8b 05 07 31 00 00 	mov    0x3107(%rip),%rax        # 5198 <font2>
+    2091:	8b 4d d4             	mov    -0x2c(%rbp),%ecx
+    2094:	8b 55 d0             	mov    -0x30(%rbp),%edx
+    2097:	48 8b 75 d8          	mov    -0x28(%rbp),%rsi
+    209b:	48 89 c7             	mov    %rax,%rdi
+    209e:	e8 8d f0 ff ff       	call   1130 <TTF_RenderText_Shaded@plt>
+    20a3:	48 89 05 f6 30 00 00 	mov    %rax,0x30f6(%rip)        # 51a0 <textSurface2>
+    20aa:	48 8b 15 ef 30 00 00 	mov    0x30ef(%rip),%rdx        # 51a0 <textSurface2>
+    20b1:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+    20b5:	48 89 d6             	mov    %rdx,%rsi
+    20b8:	48 89 c7             	mov    %rax,%rdi
+    20bb:	e8 f0 ef ff ff       	call   10b0 <SDL_CreateTextureFromSurface@plt>
+    20c0:	48 89 05 e1 30 00 00 	mov    %rax,0x30e1(%rip)        # 51a8 <textTexture2>
+    20c7:	c7 45 c8 96 00 00 00 	movl   $0x96,-0x38(%rbp)
+    20ce:	c7 45 cc 96 00 00 00 	movl   $0x96,-0x34(%rbp)
+    20d5:	8b 45 c8             	mov    -0x38(%rbp),%eax
+    20d8:	89 45 e0             	mov    %eax,-0x20(%rbp)
+    20db:	8b 45 cc             	mov    -0x34(%rbp),%eax
+    20de:	89 45 e4             	mov    %eax,-0x1c(%rbp)
+    20e1:	c7 45 e8 90 01 00 00 	movl   $0x190,-0x18(%rbp)
+    20e8:	c7 45 ec 2c 01 00 00 	movl   $0x12c,-0x14(%rbp)
+    20ef:	48 8b 35 b2 30 00 00 	mov    0x30b2(%rip),%rsi        # 51a8 <textTexture2>
+    20f6:	48 8d 55 e0          	lea    -0x20(%rbp),%rdx
+    20fa:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+    20fe:	48 89 d1             	mov    %rdx,%rcx
+    2101:	ba 00 00 00 00       	mov    $0x0,%edx
+    2106:	48 89 c7             	mov    %rax,%rdi
+    2109:	e8 02 f0 ff ff       	call   1110 <SDL_RenderCopy@plt>
+    210e:	90                   	nop
+    210f:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2113:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+    211a:	00 00 
+    211c:	74 05                	je     2123 <renderGameOver+0xdf>
+    211e:	e8 1d f0 ff ff       	call   1140 <__stack_chk_fail@plt>
+    2123:	c9                   	leave
+    2124:	c3                   	ret
+
+Disassembly of section .fini:
+
+0000000000002128 <_fini>:
+    2128:	f3 0f 1e fa          	endbr64
+    212c:	48 83 ec 08          	sub    $0x8,%rsp
+    2130:	48 83 c4 08          	add    $0x8,%rsp
+    2134:	c3                   	ret

@@ -77,45 +77,49 @@ int main() {
     SDL_Texture* foodtexture = foodTexture(renderer); 
           
     Food food = CreateFood(300, 300, 50, 50); 
-    Player player = Createplayer(100, 100, 50, 50); 
-    Enermy enermy = CreateEnermy(200, 200, 50, 50, 1);  
-     
-     SDL_Event event;
+    Player player = Createplayer(WIDTH / 2, HEIGHT / 2, 50, 50); 
+    Enermy enermy = CreateEnermy(200, 200, 50, 50, 1);       
+    Enermy enermy2 = CreateEnermy(300, 400, 50, 50, 1);  
+    SDL_Event event;
+
      while (true) {
-	if (SDL_PollEvent(&event) < 0) {
-		if (event.type == SDL_QUIT)
-		return -1; 	
-	}	
-	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-        if (currentKeyStates[SDL_SCANCODE_UP]) {
-            playerMovement(&player, 0, UP);
-        }
-        if (currentKeyStates[SDL_SCANCODE_DOWN]) {
-            playerMovement(&player, 0, DOWN);
-        }
-        if (currentKeyStates[SDL_SCANCODE_LEFT]) {
-            playerMovement(&player, LEFT, 0);
-        }
-        if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
-            playerMovement(&player, RIGHT, 0);
-	}
-      
+	     while (SDL_PollEvent(&event)) {
+			switch (event.key.keysym.sym) {
+				case SDLK_i: 
+					playerMovement(&player, 0, UP);
+					break;
+				case SDLK_k: 
+					playerMovement(&player, 0, DOWN);
+					break; 
+				case SDLK_j: 
+					playerMovement(&player, LEFT, 0); 
+					break; 
+				case SDLK_l: 	
+					playerMovement(&player, RIGHT, 0); 
+					break;
+				case SDL_QUIT: 
+					return -1; 
+					break; 	
+		}	
+	} 
       SDL_RenderClear(renderer);
       SDL_RenderCopy(renderer, Mapping, NULL, NULL);	  
             
       renderText(renderer, score); 	        
-      if (checkCollisionEn(&player, &enermy) == 1) {
-     	      renderGameOver(renderer);
+      if (checkCollisionEn(&player, &enermy) == 1) { 
+      	      SDL_RenderClear(renderer);
 	      score = 0; 
      	      player.x = WIDTH / 2; 
-	      player.y = HEIGHT / 2; 
+	      player.y = HEIGHT / 2;   
+	      renderGameOver(renderer); 
       }
 
       if (checkCollisionFood(&player, &food)) {
             RandomFootPos(&food);  
 	    score++; 	     
       }
-      updatePlayerToEnermy1(&enermy, &player);
+      updatePlayerToEnermy1(&enermy, &player);      
+      updatePlayerToEnermy1(&enermy2, &player);
       
       SDL_Rect drawPlayer = {player.x, player.y, player.width, player.height};
       SDL_RenderCopy(renderer, Playertexture, NULL, &drawPlayer);
@@ -125,7 +129,10 @@ int main() {
      
       SDL_Rect Enermy = {enermy.x, enermy.y, ENERMY_WIDTH, ENERMY_HEIGHT};
       SDL_RenderCopy(renderer, Entexture, NULL, &Enermy); 
-     
+
+      SDL_Rect Enermy2 = {enermy2.x, enermy2.y, ENERMY_WIDTH, ENERMY_HEIGHT};
+      SDL_RenderCopy(renderer, Entexture, NULL, &Enermy2); 
+      
       SDL_RenderPresent(renderer);
       SDL_Delay(16);
      }
