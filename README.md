@@ -4,7 +4,7 @@ Battery Eater is a simple game built using SDL where you, as a bot, must eat bat
 
 ## Gameplay
 
-In Battery Eater, you control a bot navigating through a dynamic environment filled with batteries and enemies. The objective is to survive as long as possible by consuming batteries while dodging the enemies. Each battery eaten contributes to your score, while encountering an enemy decreases your health. The game ends when your health reaches zero.
+In BOT_BOY, you control a bot navigating through a dynamic environment filled with batteries and enemies. The objective is to survive as long as possible by consuming batteries while dodging the enemies. Each battery eaten contributes to your score, while encountering an enemy decreases your health. The game ends when your health reaches zero.
 
 ## Features
 
@@ -23,11 +23,11 @@ To play Battery Eater, follow these steps:
 
 ## Controls
 
-- Use the arrow keys or WASD to move the bot:
-  - Up arrow key/ArrowUP: Move Up
-  - Down arrow key/ArrowDown: Move Down
-  - Left arrow key/ArrowLeft: Move Left
-  - Right arrow key/ArrowRight: Move Right
+- Use the jkli key to move the bot:
+  - Up i: Move Up
+  - Down k: Move Down
+  - Left j: Move Left
+  - Right l: Move Right
 
 ## Screenshots
 
