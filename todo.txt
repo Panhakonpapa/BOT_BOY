@@ -2,4 +2,4 @@
 [] fixing GameOver screen 
 [] Rewamp the art style make it your own 
 [] Add music 
-
+[x] fixing keyboard and clearing up main.c 

@@ -20,7 +20,7 @@ void Write_the_info(const char* source_files[], int file_arry_t) {
 }
 void NovaBuild_up(Token* Nova) {
 	char compiler[4024];
-	snprintf(compiler, sizeof(compiler), "gcc main.c -o nova -lSDL2 -lSDL2_ttf -lm -Wall -Wextra ");
+	snprintf(compiler, sizeof(compiler), "gcc main.c -O3 nova -lSDL2 -lSDL2_ttf -lm -Wall -Wextra ");
 
 	const char* source_files[] = {
 		Nova->SoureFiles1,

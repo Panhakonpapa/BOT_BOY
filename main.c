@@ -11,7 +11,7 @@
 #include "Enermy.h"
 #include "food.h" 
 #include "physics.h"
-#include "gameover.h" 
+// #include "gameover.h" 
 
 #define WIDTH 800            /* Width of the window */
 #define HEIGHT 600           /* Height of the window */
@@ -28,26 +28,26 @@
 #define UP -20 
 #define DOWN 20
 
-
 SDL_Window *window;
 SDL_Renderer *renderer;
 
 int main() {
-    printf("Initing the SDL_INTI SYSTEM...\n");
-    int score = 10; 
-    SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Init(SDL_INIT_VIDEO);
     
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-	printf("Someting went wrong with SDL_INIT...\n"); 
-        exit(EXIT_FAILURE);  
+    int score = 10; 
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) { 			
+	fprintf(stderr, "SDL could not initialize! SDL Error: %s\n", SDL_GetError());
+	exit(EXIT_FAILURE);  
     }
     
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    fprintf(stderr, "SDL could not initialize! SDL Error: %s\n", SDL_GetError());
-    exit(EXIT_FAILURE); 
-}
+	fprintf(stderr, "SDL could not initialize! SDL Error: %s\n", SDL_GetError());
+	exit(EXIT_FAILURE); 
+    }
 
+    if (TTF_Init() < 0) {
+	fprintf(stderr, "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+	exit(EXIT_FAILURE);  
+    }
     window = SDL_CreateWindow(
 	"BOT BOY",
 	SDL_WINDOWPOS_UNDEFINED,  	
@@ -56,24 +56,17 @@ int main() {
 	HEIGHT,
 	0); 
 
-     if (window == NULL) {
-	printf("There is no window UwU... \n");	
+     if (window == NULL) {	 
+	fprintf(stderr, "SDL could not initialize! SDL Error: %s\n", SDL_GetError());
      }
-
      renderer = SDL_CreateRenderer(
                    window, 
 	           -1,
 		   SDL_RENDERER_ACCELERATED 
 		   );
       
-    const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";     	  
-  
-    init_texture();
-    openFont(fontPath);
-
-    init_texture2();
-    openFont2(fontPath);
-    
+    const char* fontPath = "/home/panha/sanke/Snake_Game/art/ErbosDraco1StNbpRegular-99V5.ttf";     	 
+    openFont(fontPath);  
     SDL_Texture* Entexture = enermyTexture(renderer); 	  /* Enermy Texture */
     SDL_Texture* Playertexture = PlayerTexture(renderer); /* Player Texture */
     SDL_Texture* Mapping = mapTexture(renderer);  	  /* Map texture */
@@ -81,11 +74,11 @@ int main() {
     
     /* Objcet Creation */ 
     Food food = CreateFood(300, 300, 50, 50); 
-    Player player = Createplayer(WIDTH / 2, HEIGHT / 2, 50, 50); 
+    Player player = Createplayer(WIDTH / 2, HEIGHT / 2, 50, 50);  
     Enermy enermy = CreateEnermy(200, 200, 50, 50, 1);       
  
     SDL_Event event; /* SDL get event */
-     while (true) {
+    while (true) {
 	     while (SDL_PollEvent(&event)) {
 			switch (event.key.keysym.sym) {
 				case SDLK_i: 
@@ -117,14 +110,11 @@ int main() {
 	      score = 0; 
      	      player.x = WIDTH / 2; 
 	      player.y = HEIGHT / 2;   
-	      renderGameOver(renderer); 
-      }
-
+      } 
       if (checkCollisionFood(&player, &food)) {
             RandomFootPos(&food);  
 	    score++; 	     
-      }
-      
+      } 
       /* Enermy AI that move to Playler */ 
       updatePlayerToEnermy1(&enermy, &player);      
     
